@@ -1,0 +1,81 @@
+/* Birthday Card */
+.birthday-card {
+    background-color: #2d3748;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s, background-color 0.2s;
+  }
+  
+  .birthday-card:hover {
+    background-color: #3d495c;
+    transform: translateY(-2px);
+  }
+  
+  .birthday-card-content {
+    padding: 16px;
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  /* Avatar */
+  .avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3182ce, #4c51bf);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  /* Birthday Details */
+  .birthday-details {
+    margin-left: 16px;
+    flex-grow: 1;
+  }
+  
+  .birthday-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .person-name {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  .person-age {
+    font-size: 0.875rem;
+    color: #a0aec0;
+    padding: 2px 8px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+  }
+  .detail-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    color: #e2e8f0;
+    font-size: 0.875rem;
+  }
+  .icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    color: #90cdf4;
+  }
+  .notes {
+    margin-top: 12px;
+    margin-bottom: 0;
+    color: #cbd5e0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    font-style: italic;
+  }

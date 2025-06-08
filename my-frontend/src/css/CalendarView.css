@@ -1,0 +1,434 @@
+/* .calendar-container {
+    background-color: #1a202c;
+    border-radius: 8px;
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .current-month-year {
+    font-size: 1.5rem;
+  }
+  
+  .nav-button {
+    background-color: #2d3748;
+    border: none;
+    border-radius: 8px;
+    color: #a0aec0;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  
+  .nav-button:hover {
+    background-color: #3d495c;
+    color: #ffffff;
+  }
+  
+  .nav-button .icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .calendar-grid {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .days-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 5px;
+  }
+  
+  .day-name {
+    font-size: 0.75rem;
+    text-align: center;
+    padding: 8px 0;
+  }
+  
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr); 
+    gap: 4px;
+    flex: 1;
+  }
+  
+  .days-gridbefore {
+    display: none;
+  }
+  
+  .days-grid > *:first-child {
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+  }
+  
+  .calendar-day {
+    background-color: #2d3748;
+    border-radius: 6px;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height:auto;
+    min-height: auto;
+    font-size: 0.75rem;
+  }
+  
+  .calendar-day:hover:not(.empty) {
+    background-color: #3d495c;
+    transform: translateY(-2px);
+  }
+  
+  .calendar-day.empty {
+    background-color: transparent;
+    cursor: default;
+  }
+  
+  .calendar-day.has-birthday {
+    background-color: rgba(66, 153, 225, 0.15);
+  }
+  
+  .calendar-day.highlighted {
+    box-shadow: 0 0 0 2px #4299e1;
+    background-color: rgba(66, 153, 225, 0.25);
+  }
+  
+  .day-number {
+    color: #e2e8f0;
+    font-size: 0.875rem;
+    margin-bottom: 2px;
+  }
+  
+  .day-birthdays {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: auto;
+  }
+  
+  .day-birthday-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.65rem;
+    color: #e2e8f0;
+    white-space: nowrap;
+  }
+  
+  .avatar-mini {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3182ce, #4c51bf);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: white;
+    margin-right: 4px;
+    flex-shrink: 0;
+  }
+  
+  .name-preview {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 24px);
+  }
+  
+  .more-birthdays {
+    font-size: 0.65rem;
+    color: #90cdf4;
+    text-align: center;
+    padding-top: 2px;
+  }
+  
+  @media (max-width: 768px) {
+    .calendar-container {
+      padding: 8px;
+    }
+    
+    .days-grid {
+      gap: 4px;
+    }
+    
+    .calendar-day {
+      padding: 4px;
+      min-height: 60px;
+    }
+    
+    .day-number {
+      font-size: 0.9rem;
+    }
+    
+    .day-birthday-item {
+      font-size: 0.7rem;
+    }
+    
+    .avatar-mini {
+      width: 18px;
+      height: 18px;
+      font-size: 0.65rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .calendar-day {
+      min-height: 50px;
+    }
+    
+    .day-number {
+      font-size: 0.8rem;
+    }
+    
+    .avatar-mini {
+      width: 16px;
+      height: 16px;
+    }
+    
+    .name-preview {
+      display: none;
+    }
+  } */
+
+  .calendar-container {
+    background-color: #1a202c;
+    border-radius: 8px;
+    padding: 16px 16px 8px 16px;
+    height: calc(100vh - 100px);
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .current-month-year {
+    font-size: 1.5rem;
+  }
+  
+  .nav-button {
+    background-color: #2d3748;
+    border: none;
+    border-radius: 8px;
+    color: #a0aec0;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  
+  .nav-button:hover {
+    background-color: #3d495c;
+    color: #ffffff;
+  }
+  
+  .nav-button .icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .calendar-grid {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  
+  .days-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 4px;
+  }
+  
+  .day-name {
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 8px 0;
+  }
+  
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, minmax(55px, 1fr)); /* Reduced height */
+    gap: 4px;
+    flex: 1;
+    overflow: visible;
+  }
+  
+  .calendar-day {
+    background-color: #2d3748;
+    border-radius: 6px;
+    padding: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 55px; /* Reduced minimum height */
+    font-size: 0.75rem;
+  }
+  
+  .calendar-day:hover:not(.empty) {
+    background-color: #3d495c;
+    transform: translateY(-2px);
+  }
+  
+  .calendar-day.empty {
+    background-color: transparent;
+    cursor: default;
+  }
+  
+  .calendar-day.has-birthday {
+    background-color: rgba(66, 153, 225, 0.15);
+  }
+  
+  .calendar-day.highlighted {
+    box-shadow: 0 0 0 2px #4299e1;
+    background-color: rgba(66, 153, 225, 0.25);
+  }
+  
+  .day-number {
+    color: #e2e8f0;
+    font-size: 0.875rem;
+    margin-bottom: 4px;
+  }
+  
+  .day-birthdays {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: auto;
+    overflow: hidden;
+  }
+  
+  .day-birthday-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.7rem;
+    color: #e2e8f0;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  .avatar-mini {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3182ce, #4c51bf);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: white;
+    margin-right: 4px;
+    flex-shrink: 0;
+  }
+  
+  .name-preview {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 24px);
+  }
+  
+  .more-birthdays {
+    font-size: 0.7rem;
+    color: #90cdf4;
+    text-align: center;
+    padding-top: 2px;
+  }
+  
+  @media (max-width: 1024px) {
+    .calendar-container {
+      height: calc(100vh - 100px);
+    }
+    
+    .calendar-day {
+      min-height: 65px; /* Slightly reduced */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .calendar-container {
+      padding: 12px 12px 6px 12px;
+      height: calc(100vh - 90px);
+    }
+    
+    .days-grid {
+      gap: 3px;
+      grid-template-rows: repeat(6, minmax(50px, 1fr)); /* Adjusted for smaller screens */
+    }
+    
+    .calendar-day {
+      padding: 4px;
+      min-height: 48px; /* Reduced */
+    }
+    
+    .day-number {
+      font-size: 0.8rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .calendar-container {
+      padding: 8px 8px 4px 8px;
+    }
+    
+    .days-grid {
+      grid-template-rows: repeat(6, minmax(40px, 1fr)); /* Further reduced for mobile */
+      gap: 2px;
+    }
+    
+    .calendar-day {
+      min-height: 38px; /* Reduced for mobile */
+      padding: 3px;
+    }
+    
+    .day-number {
+      font-size: 0.75rem;
+      margin-bottom: 2px;
+    }
+    
+    .avatar-mini {
+      width: 16px;
+      height: 16px;
+    }
+    
+    .name-preview {
+      display: none;
+    }
+  }

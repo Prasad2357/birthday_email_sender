@@ -1,0 +1,23 @@
+/* body {
+  background-color: #282c34;
+  color: white;
+  font-family: Arial;
+  text-align: center;
+} */
+
+.app{
+  width:100%;
+  height:100%;  
+
+}
+
+.main-content{
+  width:100%;
+  height:100%;  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: hidden ;
+}
+

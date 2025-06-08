@@ -1,0 +1,243 @@
+/* 
+.birthday-list{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.grid-container{
+    display: flex;
+    width: 82.5%;
+    height: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+.month-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+    
+  }
+
+
+  
+  
+  
+  .month-tile {
+    background-color: #1976d2;
+    color: white;
+    padding: 30px;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+    width: 200px;
+    height: 200px;
+    margin: 6px;
+  }
+  
+  .month-tile:hover {
+    background-color: #1565c0;
+  }
+   */
+
+
+/* .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    height: calc(100vh - 100px);
+    overflow: hidden;
+  }
+  
+  .month-tile {
+    background-color: #1976d2;
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 160px;
+  }
+  
+  .month-tile:hover {
+    background-color: #1565c0;
+    transform: translateY(-3px);
+  }
+  
+  .month-tile.current-month {
+    background: linear-gradient(135deg, #d2196f, #3f51b5);
+    box-shadow: 0 8px 20px rgba(25, 118, 210, 0.3);
+  }
+  
+  .month-name {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  
+  .birthday-indicator {
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;    
+    gap: 4px;
+  }
+  
+  .gift-icon {
+    margin-right: 4px;
+    width: 16px;
+    height: 16px;
+  }
+  
+  .no-birthdays {
+    margin-top: 10px;
+    font-size: 0.875rem;
+    opacity: 0.7;
+  }
+  
+  @media (max-width: 1024px) {
+    .grid-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .grid-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .grid-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .month-tile {
+      aspect-ratio: initial;
+      height: 120px;
+    }
+  } */
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    width: 100%;
+    padding: 16px;
+    height: calc(100vh - 120px);
+    overflow-y: hidden; /* Disabled vertical scrolling */
+    box-sizing: border-box;
+  }
+  
+  .month-tile {
+    background-color: #1976d2;
+    color: white;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 160px;
+    box-sizing: border-box;
+  }
+  
+  .month-tile:hover {
+    background-color: #1565c0;
+    transform: translateY(-3px);
+  }
+  
+  .month-tile.current-month {
+    background: linear-gradient(135deg, #d2196f, #3f51b5);
+    box-shadow: 0 8px 20px rgba(25, 118, 210, 0.3);
+  }
+  
+  .month-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .birthday-indicator {
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;    
+    gap: 4px;
+  }
+  
+  .gift-icon {
+    margin-right: 4px;
+    width: 16px;
+    height: 16px;
+  }
+  
+  .no-birthdays {
+    margin-top: 10px;
+    font-size: 0.875rem;
+    opacity: 0.7;
+  }
+  
+  /* Responsive Grid */
+  @media (max-width: 1200px) {
+    .grid-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .grid-container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      height: calc(100vh - 100px);
+      overflow-y: hidden;
+    }
+    
+    .month-tile {
+      height: 140px;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .grid-container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      overflow-y: hidden;
+    }
+    
+    .month-tile {
+      height: 120px;
+      padding: 12px;
+    }
+    
+    .month-name {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .grid-container {
+      grid-template-columns: 1fr;
+      height: auto;
+      min-height: calc(100vh - 100px);
+      overflow-y: hidden;
+    }
+    
+    .month-tile {
+      height: 100px;
+    }
+  }
