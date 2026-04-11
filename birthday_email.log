@@ -1,0 +1,59 @@
+2026-04-11 10:35:36,438 - INFO - Birthday emails checked and sent if needed.
+2026-04-11 10:35:42,840 - INFO - Birthday emails checked and sent if needed.
+2026-04-11 10:55:48,566 - ERROR - Error in birthday email task: (sqlite3.OperationalError) no such column: birthday.notes
+[SQL: SELECT birthday.bday_id, birthday.name, birthday.date, birthday.notes, birthday.last_reminded 
+FROM birthday]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-04-11 11:15:53,670 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:15:53,670 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:15:53,670 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:15:53,671 - INFO - Added job "send_daily_reminder" to job store "default"
+2026-04-11 11:15:53,672 - INFO - Added job "send_weekly_reminder" to job store "default"
+2026-04-11 11:15:53,672 - INFO - Added job "send_monthly_reminder" to job store "default"
+2026-04-11 11:15:53,672 - INFO - Scheduler started
+2026-04-11 11:15:53,672 - INFO - \U0001f5d3  Birthday reminder scheduler started.
+2026-04-11 11:16:27,367 - INFO - Scheduler shut down.
+2026-04-11 11:16:27,367 - INFO - Scheduler has been shut down
+2026-04-11 11:16:28,260 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:16:28,260 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:16:28,260 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:16:28,262 - INFO - Added job "send_daily_reminder" to job store "default"
+2026-04-11 11:16:28,262 - INFO - Added job "send_weekly_reminder" to job store "default"
+2026-04-11 11:16:28,263 - INFO - Added job "send_monthly_reminder" to job store "default"
+2026-04-11 11:16:28,263 - INFO - Scheduler started
+2026-04-11 11:16:28,263 - INFO - \U0001f5d3  Birthday reminder scheduler started.
+2026-04-11 11:16:38,902 - INFO - Scheduler shut down.
+2026-04-11 11:16:38,902 - INFO - Scheduler has been shut down
+2026-04-11 11:16:39,802 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:16:39,802 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:16:39,802 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:16:39,802 - INFO - Added job "send_daily_reminder" to job store "default"
+2026-04-11 11:16:39,808 - INFO - Added job "send_weekly_reminder" to job store "default"
+2026-04-11 11:16:39,808 - INFO - Added job "send_monthly_reminder" to job store "default"
+2026-04-11 11:16:39,808 - INFO - Scheduler started
+2026-04-11 11:16:39,808 - INFO - \U0001f5d3  Birthday reminder scheduler started.
+2026-04-11 11:17:09,041 - INFO - Scheduler shut down.
+2026-04-11 11:17:09,041 - INFO - Scheduler has been shut down
+2026-04-11 11:17:10,031 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:17:10,031 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:17:10,031 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:17:10,032 - INFO - Added job "send_daily_reminder" to job store "default"
+2026-04-11 11:17:10,032 - INFO - Added job "send_weekly_reminder" to job store "default"
+2026-04-11 11:17:10,032 - INFO - Added job "send_monthly_reminder" to job store "default"
+2026-04-11 11:17:10,032 - INFO - Scheduler started
+2026-04-11 11:17:10,032 - INFO - \U0001f5d3  Birthday reminder scheduler started.
+2026-04-11 11:19:31,662 - INFO - Scheduler shut down.
+2026-04-11 11:19:31,662 - INFO - Scheduler has been shut down
+2026-04-11 11:19:32,582 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:19:32,582 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:19:32,583 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:19:32,585 - INFO - Added job "send_daily_reminder" to job store "default"
+2026-04-11 11:19:32,585 - INFO - Added job "send_weekly_reminder" to job store "default"
+2026-04-11 11:19:32,585 - INFO - Added job "send_monthly_reminder" to job store "default"
+2026-04-11 11:19:32,585 - INFO - Scheduler started
+2026-04-11 11:19:32,585 - INFO - \U0001f5d3  Birthday reminder scheduler started.
+2026-04-11 11:20:08,116 - INFO - \u2705 Reminder email sent: \U0001f4c6 Birthday List for April 2026
+2026-04-11 11:20:38,461 - INFO - No birthdays today — skipping daily reminder.
+2026-04-11 11:20:41,490 - INFO - \u2705 Reminder email sent: \U0001f4c5 Weekly Birthday List – 11 Apr to 17 Apr 2026
+2026-04-11 11:24:36,472 - INFO - Scheduler shut down.
+2026-04-11 11:24:36,472 - INFO - Scheduler has been shut down

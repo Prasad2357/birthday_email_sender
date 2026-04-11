@@ -1,0 +1,236 @@
+2026-04-11 11:24:37,467 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:24:37,467 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:24:37,467 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:24:37,468 - INFO - Added job "send_daily_reminder" to job store "default"
+2026-04-11 11:24:37,468 - INFO - Added job "send_weekly_reminder" to job store "default"
+2026-04-11 11:24:37,468 - INFO - Added job "send_monthly_reminder" to job store "default"
+2026-04-11 11:24:37,468 - INFO - Scheduler started
+2026-04-11 11:24:37,468 - INFO - \U0001f5d3  Birthday reminder scheduler started.
+2026-04-11 11:24:47,801 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:24:47,802 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:24:47,802 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:24:47,803 - INFO - Added job "send_daily_reminder" to job store "default"
+2026-04-11 11:24:47,803 - INFO - Added job "send_weekly_reminder" to job store "default"
+2026-04-11 11:24:47,803 - INFO - Added job "send_monthly_reminder" to job store "default"
+2026-04-11 11:24:47,803 - INFO - Scheduler started
+2026-04-11 11:24:47,803 - INFO - \U0001f5d3  Birthday reminder scheduler started.
+2026-04-11 11:25:04,911 - INFO - Scheduler shut down.
+2026-04-11 11:25:04,912 - INFO - Scheduler has been shut down
+2026-04-11 11:32:43,506 - INFO - Scheduler shut down.
+2026-04-11 11:32:43,507 - INFO - Scheduler has been shut down
+2026-04-11 11:32:44,839 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:32:44,839 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:32:44,840 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:32:44,842 - INFO - Added job "send_daily_reminder" to job store "default"
+2026-04-11 11:32:44,843 - INFO - Added job "send_weekly_reminder" to job store "default"
+2026-04-11 11:32:44,843 - INFO - Added job "send_monthly_reminder" to job store "default"
+2026-04-11 11:32:44,844 - INFO - Scheduler started
+2026-04-11 11:32:44,844 - INFO - \U0001f5d3  Birthday reminder scheduler started.
+2026-04-11 11:32:58,784 - INFO - Scheduler shut down.
+2026-04-11 11:32:58,785 - INFO - Scheduler has been shut down
+2026-04-11 11:35:42,241 - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-04-11 11:38:06,785 - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-04-11 11:38:41,698 - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-04-11 11:38:58,386 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:38:58,386 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:38:58,386 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:38:58,387 - INFO - Added job "send_daily_reminder" to job store "default"
+2026-04-11 11:38:58,387 - INFO - Added job "send_weekly_reminder" to job store "default"
+2026-04-11 11:38:58,387 - INFO - Added job "send_monthly_reminder" to job store "default"
+2026-04-11 11:38:58,387 - INFO - Scheduler started
+2026-04-11 11:38:58,387 - INFO - \U0001f5d3  Birthday reminder scheduler started.
+2026-04-11 11:38:58,402 - INFO - \u23ed  SKIP (duplicate): 'Abhishek Kadam' \u2192 matched 'Abhishek Kadam'
+2026-04-11 11:38:58,404 - INFO - \u23ed  SKIP (duplicate): 'Aaji' \u2192 matched 'Aaji'
+2026-04-11 11:38:58,405 - INFO - \u23ed  SKIP (duplicate): 'Abhay Ingavale' \u2192 matched 'Abhay Ingavale'
+2026-04-11 11:38:58,405 - INFO - \u23ed  SKIP (duplicate): 'Prajwal' \u2192 matched 'Prajwal'
+2026-04-11 11:38:58,407 - INFO - \u23ed  SKIP (duplicate): 'Mandar Dhage' \u2192 matched 'Mandar Dhage'
+2026-04-11 11:38:58,409 - INFO - \u23ed  SKIP (duplicate): 'Suvendu' \u2192 matched 'Suvendu'
+2026-04-11 11:38:58,409 - INFO - \u23ed  SKIP (duplicate): 'Ashwin' \u2192 matched 'Ashwin'
+2026-04-11 11:38:58,410 - INFO - \u23ed  SKIP (duplicate): 'Shinde Mama' \u2192 matched 'Shinde mama'
+2026-04-11 11:38:58,411 - INFO - \u23ed  SKIP (duplicate): 'Shubham Yadav' \u2192 matched 'Shubham Yadav'
+2026-04-11 11:38:58,412 - INFO - \u23ed  SKIP (duplicate): 'Suyog Jagadale' \u2192 matched 'Suyog Jagadale'
+2026-04-11 11:38:58,413 - INFO - \u23ed  SKIP (duplicate): 'Vaishnavi' \u2192 matched 'Vaishnavi'
+2026-04-11 11:38:58,413 - INFO - \u23ed  SKIP (duplicate): 'Chinmay' \u2192 matched 'Chinmay'
+2026-04-11 11:38:58,415 - INFO - \u23ed  SKIP (duplicate): 'Vaibhav Aba' \u2192 matched 'Vaibhav aba'
+2026-04-11 11:38:58,416 - INFO - \u23ed  SKIP (duplicate): 'Aniket (Bunty)' \u2192 matched 'Aniket (Bunty)'
+2026-04-11 11:38:58,417 - INFO - \u23ed  SKIP (duplicate): 'Utkarsh Bhlasing' \u2192 matched 'Utkarsh Bhlasing'
+2026-04-11 11:38:58,418 - INFO - \u23ed  SKIP (duplicate): 'Sakshi Vasav' \u2192 matched 'Sakshi Vasav'
+2026-04-11 11:38:58,419 - INFO - \u23ed  SKIP (duplicate): 'Utkarsha' \u2192 matched 'Utkarsha'
+2026-04-11 11:38:58,420 - INFO - \u23ed  SKIP (duplicate): 'Harshvardhan Dudhe' \u2192 matched 'Harshvardhan Dudhe'
+2026-04-11 11:38:58,420 - INFO - \u23ed  SKIP (duplicate): 'Lavlesh Bhaiya' \u2192 matched 'Lavlesh bhaiya'
+2026-04-11 11:38:58,421 - INFO - \u23ed  SKIP (duplicate): 'Siddesh Hirve' \u2192 matched 'Siddesh Hirve'
+2026-04-11 11:38:58,421 - INFO - \u23ed  SKIP (duplicate): 'Veda' \u2192 matched 'Veda'
+2026-04-11 11:38:58,422 - INFO - \u23ed  SKIP (duplicate): 'Aditya Shelar' \u2192 matched 'Aditya Shelar'
+2026-04-11 11:38:58,423 - INFO - \u23ed  SKIP (duplicate): 'Kshitij Narkhede' \u2192 matched 'Kshitij Narkhede'
+2026-04-11 11:38:58,425 - INFO - \u23ed  SKIP (duplicate): 'Abhishek Jagadale (Babu)' \u2192 matched 'Abhishek Jagadale (Babu)'
+2026-04-11 11:38:58,426 - INFO - \u23ed  SKIP (duplicate): 'Pranav Babar' \u2192 matched 'Pranav Babar'
+2026-04-11 11:38:58,426 - INFO - \u23ed  SKIP (duplicate): 'Yash Gaikwad' \u2192 matched 'Yash Gaikwad'
+2026-04-11 11:38:58,427 - INFO - \u23ed  SKIP (duplicate): 'Dhiraj Dada' \u2192 matched 'Dhiraj dada'
+2026-04-11 11:38:58,428 - INFO - \u23ed  SKIP (duplicate): 'Viresh' \u2192 matched 'Viresh'
+2026-04-11 11:38:58,428 - INFO - \u23ed  SKIP (duplicate): 'Siddeshvar' \u2192 matched 'Siddeshvar'
+2026-04-11 11:38:58,429 - INFO - \u23ed  SKIP (duplicate): 'Shubham Bhilare' \u2192 matched 'Shubham Bhilare'
+2026-04-11 11:38:58,429 - INFO - \u23ed  SKIP (duplicate): 'Nitesh Navale (Toto)' \u2192 matched 'Nitesh Navale (Toto)'
+2026-04-11 11:38:58,431 - INFO - \u23ed  SKIP (duplicate): 'Akshay Shelar' \u2192 matched 'Akshay Shelar'
+2026-04-11 11:38:58,432 - INFO - \u23ed  SKIP (duplicate): 'Kittu Dada' \u2192 matched 'Kittu dada'
+2026-04-11 11:38:58,434 - INFO - \u23ed  SKIP (duplicate): 'Atharv Tembhurnikar' \u2192 matched 'Atharv Tembhurnikar'
+2026-04-11 11:38:58,435 - INFO - \u23ed  SKIP (duplicate): 'Gaurav Pisal' \u2192 matched 'Gaurav Pisal'
+2026-04-11 11:38:58,436 - INFO - \u23ed  SKIP (duplicate): 'Pooja Didi' \u2192 matched 'Pooja didi'
+2026-04-11 11:38:58,436 - INFO - \u23ed  SKIP (duplicate): 'Vedant Bhise' \u2192 matched 'Vedant Bhise'
+2026-04-11 11:38:58,438 - INFO - \u23ed  SKIP (duplicate): 'Pariyashi Sahu' \u2192 matched 'Pariyashi Sahu'
+2026-04-11 11:38:58,438 - INFO - \u23ed  SKIP (duplicate): 'Adi Swami' \u2192 matched 'Adi Swami'
+2026-04-11 11:38:58,438 - INFO - \u23ed  SKIP (duplicate): 'Sanket More' \u2192 matched 'Sanket More'
+2026-04-11 11:38:58,439 - INFO - \u23ed  SKIP (duplicate): 'Yash Jadhav' \u2192 matched 'Yash Jadhav'
+2026-04-11 11:38:58,440 - INFO - \u23ed  SKIP (duplicate): 'Mummy & Papa' \u2192 matched 'Mummy & Papa'
+2026-04-11 11:38:58,441 - INFO - \u23ed  SKIP (duplicate): 'Siddharth Bandal' \u2192 matched 'Siddharth Bandal'
+2026-04-11 11:38:58,441 - INFO - \u23ed  SKIP (duplicate): 'Rohan More' \u2192 matched 'Rohan More'
+2026-04-11 11:38:58,443 - INFO - \u23ed  SKIP (duplicate): 'Suraj Suryawanshi' \u2192 matched 'Suraj Suryawanshi'
+2026-04-11 11:38:58,443 - INFO - \u23ed  SKIP (duplicate): 'Tanish Mokashi' \u2192 matched 'Tanish Mokashi'
+2026-04-11 11:38:58,444 - INFO - \u23ed  SKIP (duplicate): 'Snehal Jagadale' \u2192 matched 'Snehal Jagadale'
+2026-04-11 11:38:58,445 - INFO - \u23ed  SKIP (duplicate): 'Sourabh Dere' \u2192 matched 'Sourabh Dere'
+2026-04-11 11:38:58,446 - INFO - \u23ed  SKIP (duplicate): 'Aarush' \u2192 matched 'Aarush'
+2026-04-11 11:38:58,447 - INFO - \u23ed  SKIP (duplicate): 'Pratik Waghmare' \u2192 matched 'Pratik Waghmare'
+2026-04-11 11:38:58,448 - INFO - \u23ed  SKIP (duplicate): 'Ankita Mandhare' \u2192 matched 'Ankita Mandhare'
+2026-04-11 11:38:58,448 - INFO - \u23ed  SKIP (duplicate): 'Aatya (Shilpa)' \u2192 matched 'Aatya (Shilpa)'
+2026-04-11 11:38:58,450 - INFO - \u23ed  SKIP (duplicate): 'Bhushan Pisal' \u2192 matched 'Bhushan Pisal'
+2026-04-11 11:38:58,451 - INFO - \u23ed  SKIP (duplicate): 'Sahil Waragade' \u2192 matched 'Sahil Waragade'
+2026-04-11 11:38:58,452 - INFO - \u23ed  SKIP (duplicate): 'Atharv Kamble' \u2192 matched 'Atharv Kamble'
+2026-04-11 11:38:58,454 - INFO - \u23ed  SKIP (duplicate): 'Omkar Mardhekar' \u2192 matched 'Omkar Mardhekar'
+2026-04-11 11:38:58,455 - INFO - \u23ed  SKIP (duplicate): 'Abhishek Katare' \u2192 matched 'Abhishek Katare'
+2026-04-11 11:38:58,456 - INFO - \u23ed  SKIP (duplicate): 'Mummy' \u2192 matched 'Mummy'
+2026-04-11 11:38:58,456 - INFO - \u23ed  SKIP (duplicate): 'Papa' \u2192 matched 'Papa'
+2026-04-11 11:38:58,457 - INFO - \u23ed  SKIP (duplicate): 'Anuja' \u2192 matched 'Anuja'
+2026-04-11 11:38:58,457 - INFO - \u23ed  SKIP (duplicate): 'Manav Bobade' \u2192 matched 'Manav Bobade'
+2026-04-11 11:38:58,458 - INFO - \u23ed  SKIP (duplicate): 'Tanmay Patil' \u2192 matched 'Tanmay Patil'
+2026-04-11 11:38:58,458 - INFO - \u23ed  SKIP (duplicate): 'Aarya Gowda' \u2192 matched 'Aarya Gowda'
+2026-04-11 11:38:58,460 - INFO - \u23ed  SKIP (duplicate): 'Kartik Shinde' \u2192 matched 'Kartik Shinde'
+2026-04-11 11:38:58,461 - INFO - \u23ed  SKIP (duplicate): 'Rajlaxmi Kasurde' \u2192 matched 'Rajlaxmi Kasurde'
+2026-04-11 11:38:58,461 - INFO - \u23ed  SKIP (duplicate): 'Sachin Nakate' \u2192 matched 'Sachin Nakate'
+2026-04-11 11:38:58,462 - INFO - \u23ed  SKIP (duplicate): 'Anuradha' \u2192 matched 'Anuradha'
+2026-04-11 11:39:16,894 - INFO - Scheduler shut down.
+2026-04-11 11:39:16,895 - INFO - Scheduler has been shut down
+2026-04-11 11:39:17,929 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:39:17,930 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:39:17,930 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:39:17,933 - INFO - Added job "send_daily_reminder" to job store "default"
+2026-04-11 11:39:17,933 - INFO - Added job "send_weekly_reminder" to job store "default"
+2026-04-11 11:39:17,933 - INFO - Added job "send_monthly_reminder" to job store "default"
+2026-04-11 11:39:17,933 - INFO - Scheduler started
+2026-04-11 11:39:17,933 - INFO - \U0001f5d3  Birthday reminder scheduler started.
+2026-04-11 11:39:36,725 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:39:36,725 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:39:36,725 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:39:36,726 - INFO - Added job "send_daily_reminder" to job store "default"
+2026-04-11 11:39:36,726 - INFO - Added job "send_weekly_reminder" to job store "default"
+2026-04-11 11:39:36,726 - INFO - Added job "send_monthly_reminder" to job store "default"
+2026-04-11 11:39:36,726 - INFO - Scheduler started
+2026-04-11 11:39:36,726 - INFO - \U0001f5d3  Birthday reminder scheduler started.
+2026-04-11 11:39:36,738 - INFO - Scheduler shut down.
+2026-04-11 11:39:36,738 - INFO - Scheduler has been shut down
+2026-04-11 11:39:48,397 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:39:48,397 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:39:48,397 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:39:48,398 - INFO - Added job "send_daily_reminder" to job store "default"
+2026-04-11 11:39:48,399 - INFO - Added job "send_weekly_reminder" to job store "default"
+2026-04-11 11:39:48,399 - INFO - Added job "send_monthly_reminder" to job store "default"
+2026-04-11 11:39:48,399 - INFO - Scheduler started
+2026-04-11 11:39:48,399 - INFO - \U0001f5d3  Birthday reminder scheduler started.
+2026-04-11 11:39:58,776 - INFO - Scheduler shut down.
+2026-04-11 11:39:58,777 - INFO - Scheduler has been shut down
+2026-04-11 11:39:59,862 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:39:59,862 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:39:59,862 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:39:59,864 - INFO - Added job "send_daily_reminder" to job store "default"
+2026-04-11 11:39:59,864 - INFO - Added job "send_weekly_reminder" to job store "default"
+2026-04-11 11:39:59,864 - INFO - Added job "send_monthly_reminder" to job store "default"
+2026-04-11 11:39:59,864 - INFO - Scheduler started
+2026-04-11 11:39:59,865 - INFO - \U0001f5d3  Birthday reminder scheduler started.
+2026-04-11 11:40:16,401 - INFO - \u23ed  SKIP (duplicate): 'Abhishek Kadam' \u2192 matched 'Abhishek Kadam'
+2026-04-11 11:40:16,402 - INFO - \u23ed  SKIP (duplicate): 'Aaji' \u2192 matched 'Aaji'
+2026-04-11 11:40:16,402 - INFO - \u23ed  SKIP (duplicate): 'Abhay Ingavale' \u2192 matched 'Abhay Ingavale'
+2026-04-11 11:40:16,403 - INFO - \u23ed  SKIP (duplicate): 'Prajwal' \u2192 matched 'Prajwal'
+2026-04-11 11:40:16,403 - INFO - \u23ed  SKIP (duplicate): 'Mandar Dhage' \u2192 matched 'Mandar Dhage'
+2026-04-11 11:40:16,403 - INFO - \u23ed  SKIP (duplicate): 'Suvendu' \u2192 matched 'Suvendu'
+2026-04-11 11:40:16,404 - INFO - \u23ed  SKIP (duplicate): 'Ashwin' \u2192 matched 'Ashwin'
+2026-04-11 11:40:16,404 - INFO - \u23ed  SKIP (duplicate): 'Shinde Mama' \u2192 matched 'Shinde mama'
+2026-04-11 11:40:16,404 - INFO - \u23ed  SKIP (duplicate): 'Shubham Yadav' \u2192 matched 'Shubham Yadav'
+2026-04-11 11:40:16,406 - INFO - \u23ed  SKIP (duplicate): 'Suyog Jagadale' \u2192 matched 'Suyog Jagadale'
+2026-04-11 11:40:16,407 - INFO - \u23ed  SKIP (duplicate): 'Vaishnavi' \u2192 matched 'Vaishnavi'
+2026-04-11 11:40:16,407 - INFO - \u23ed  SKIP (duplicate): 'Chinmay' \u2192 matched 'Chinmay'
+2026-04-11 11:40:16,408 - INFO - \u23ed  SKIP (duplicate): 'Vaibhav Aba' \u2192 matched 'Vaibhav aba'
+2026-04-11 11:40:16,408 - INFO - \u23ed  SKIP (duplicate): 'Aniket (Bunty)' \u2192 matched 'Aniket (Bunty)'
+2026-04-11 11:40:16,409 - INFO - \u23ed  SKIP (duplicate): 'Utkarsh Bhlasing' \u2192 matched 'Utkarsh Bhlasing'
+2026-04-11 11:40:16,409 - INFO - \u23ed  SKIP (duplicate): 'Sakshi Vasav' \u2192 matched 'Sakshi Vasav'
+2026-04-11 11:40:16,409 - INFO - \u23ed  SKIP (duplicate): 'Utkarsha' \u2192 matched 'Utkarsha'
+2026-04-11 11:40:16,411 - INFO - \u23ed  SKIP (duplicate): 'Harshvardhan Dudhe' \u2192 matched 'Harshvardhan Dudhe'
+2026-04-11 11:40:16,411 - INFO - \u23ed  SKIP (duplicate): 'Lavlesh Bhaiya' \u2192 matched 'Lavlesh bhaiya'
+2026-04-11 11:40:16,412 - INFO - \u23ed  SKIP (duplicate): 'Siddesh Hirve' \u2192 matched 'Siddesh Hirve'
+2026-04-11 11:40:16,413 - INFO - \u23ed  SKIP (duplicate): 'Veda' \u2192 matched 'Veda'
+2026-04-11 11:40:16,413 - INFO - \u23ed  SKIP (duplicate): 'Aditya Shelar' \u2192 matched 'Aditya Shelar'
+2026-04-11 11:40:16,414 - INFO - \u23ed  SKIP (duplicate): 'Kshitij Narkhede' \u2192 matched 'Kshitij Narkhede'
+2026-04-11 11:40:16,415 - INFO - \u23ed  SKIP (duplicate): 'Abhishek Jagadale (Babu)' \u2192 matched 'Abhishek Jagadale (Babu)'
+2026-04-11 11:40:16,415 - INFO - \u23ed  SKIP (duplicate): 'Pranav Babar' \u2192 matched 'Pranav Babar'
+2026-04-11 11:40:16,416 - INFO - \u23ed  SKIP (duplicate): 'Yash Gaikwad' \u2192 matched 'Yash Gaikwad'
+2026-04-11 11:40:16,416 - INFO - \u23ed  SKIP (duplicate): 'Dhiraj Dada' \u2192 matched 'Dhiraj dada'
+2026-04-11 11:40:16,417 - INFO - \u23ed  SKIP (duplicate): 'Viresh' \u2192 matched 'Viresh'
+2026-04-11 11:40:16,418 - INFO - \u23ed  SKIP (duplicate): 'Siddeshvar' \u2192 matched 'Siddeshvar'
+2026-04-11 11:40:16,418 - INFO - \u23ed  SKIP (duplicate): 'Shubham Bhilare' \u2192 matched 'Shubham Bhilare'
+2026-04-11 11:40:16,419 - INFO - \u23ed  SKIP (duplicate): 'Nitesh Navale (Toto)' \u2192 matched 'Nitesh Navale (Toto)'
+2026-04-11 11:40:16,419 - INFO - \u23ed  SKIP (duplicate): 'Akshay Shelar' \u2192 matched 'Akshay Shelar'
+2026-04-11 11:40:16,420 - INFO - \u23ed  SKIP (duplicate): 'Kittu Dada' \u2192 matched 'Kittu dada'
+2026-04-11 11:40:16,421 - INFO - \u23ed  SKIP (duplicate): 'Atharv Tembhurnikar' \u2192 matched 'Atharv Tembhurnikar'
+2026-04-11 11:40:16,421 - INFO - \u23ed  SKIP (duplicate): 'Gaurav Pisal' \u2192 matched 'Gaurav Pisal'
+2026-04-11 11:40:16,421 - INFO - \u23ed  SKIP (duplicate): 'Pooja Didi' \u2192 matched 'Pooja didi'
+2026-04-11 11:40:16,423 - INFO - \u23ed  SKIP (duplicate): 'Vedant Bhise' \u2192 matched 'Vedant Bhise'
+2026-04-11 11:40:16,423 - INFO - \u23ed  SKIP (duplicate): 'Pariyashi Sahu' \u2192 matched 'Pariyashi Sahu'
+2026-04-11 11:40:16,424 - INFO - \u23ed  SKIP (duplicate): 'Adi Swami' \u2192 matched 'Adi Swami'
+2026-04-11 11:40:16,425 - INFO - \u23ed  SKIP (duplicate): 'Sanket More' \u2192 matched 'Sanket More'
+2026-04-11 11:40:16,425 - INFO - \u23ed  SKIP (duplicate): 'Yash Jadhav' \u2192 matched 'Yash Jadhav'
+2026-04-11 11:40:16,425 - INFO - \u23ed  SKIP (duplicate): 'Mummy & Papa' \u2192 matched 'Mummy & Papa'
+2026-04-11 11:40:16,426 - INFO - \u23ed  SKIP (duplicate): 'Siddharth Bandal' \u2192 matched 'Siddharth Bandal'
+2026-04-11 11:40:16,426 - INFO - \u23ed  SKIP (duplicate): 'Rohan More' \u2192 matched 'Rohan More'
+2026-04-11 11:40:16,427 - INFO - \u23ed  SKIP (duplicate): 'Suraj Suryawanshi' \u2192 matched 'Suraj Suryawanshi'
+2026-04-11 11:40:16,428 - INFO - \u23ed  SKIP (duplicate): 'Tanish Mokashi' \u2192 matched 'Tanish Mokashi'
+2026-04-11 11:40:16,428 - INFO - \u23ed  SKIP (duplicate): 'Snehal Jagadale' \u2192 matched 'Snehal Jagadale'
+2026-04-11 11:40:16,429 - INFO - \u23ed  SKIP (duplicate): 'Sourabh Dere' \u2192 matched 'Sourabh Dere'
+2026-04-11 11:40:16,430 - INFO - \u23ed  SKIP (duplicate): 'Aarush' \u2192 matched 'Aarush'
+2026-04-11 11:40:16,430 - INFO - \u23ed  SKIP (duplicate): 'Pratik Waghmare' \u2192 matched 'Pratik Waghmare'
+2026-04-11 11:40:16,431 - INFO - \u23ed  SKIP (duplicate): 'Ankita Mandhare' \u2192 matched 'Ankita Mandhare'
+2026-04-11 11:40:16,431 - INFO - \u23ed  SKIP (duplicate): 'Aatya (Shilpa)' \u2192 matched 'Aatya (Shilpa)'
+2026-04-11 11:40:16,431 - INFO - \u23ed  SKIP (duplicate): 'Bhushan Pisal' \u2192 matched 'Bhushan Pisal'
+2026-04-11 11:40:16,433 - INFO - \u23ed  SKIP (duplicate): 'Sahil Waragade' \u2192 matched 'Sahil Waragade'
+2026-04-11 11:40:16,434 - INFO - \u23ed  SKIP (duplicate): 'Atharv Kamble' \u2192 matched 'Atharv Kamble'
+2026-04-11 11:40:16,434 - INFO - \u23ed  SKIP (duplicate): 'Omkar Mardhekar' \u2192 matched 'Omkar Mardhekar'
+2026-04-11 11:40:16,435 - INFO - \u23ed  SKIP (duplicate): 'Abhishek Katare' \u2192 matched 'Abhishek Katare'
+2026-04-11 11:40:16,435 - INFO - \u23ed  SKIP (duplicate): 'Mummy' \u2192 matched 'Mummy'
+2026-04-11 11:40:16,436 - INFO - \u23ed  SKIP (duplicate): 'Papa' \u2192 matched 'Papa'
+2026-04-11 11:40:16,436 - INFO - \u23ed  SKIP (duplicate): 'Anuja' \u2192 matched 'Anuja'
+2026-04-11 11:40:16,437 - INFO - \u23ed  SKIP (duplicate): 'Manav Bobade' \u2192 matched 'Manav Bobade'
+2026-04-11 11:40:16,437 - INFO - \u23ed  SKIP (duplicate): 'Tanmay Patil' \u2192 matched 'Tanmay Patil'
+2026-04-11 11:40:16,439 - INFO - \u23ed  SKIP (duplicate): 'Aarya Gowda' \u2192 matched 'Aarya Gowda'
+2026-04-11 11:40:16,439 - INFO - \u23ed  SKIP (duplicate): 'Kartik Shinde' \u2192 matched 'Kartik Shinde'
+2026-04-11 11:40:16,440 - INFO - \u23ed  SKIP (duplicate): 'Rajlaxmi Kasurde' \u2192 matched 'Rajlaxmi Kasurde'
+2026-04-11 11:40:16,441 - INFO - \u23ed  SKIP (duplicate): 'Sachin Nakate' \u2192 matched 'Sachin Nakate'
+2026-04-11 11:40:16,441 - INFO - \u23ed  SKIP (duplicate): 'Anuradha' \u2192 matched 'Anuradha'
+2026-04-11 11:40:18,516 - INFO - \u2705 INSERTED: 'Test Person New' on 05 Apr
+2026-04-11 11:40:27,847 - INFO - Scheduler shut down.
+2026-04-11 11:40:27,847 - INFO - Scheduler has been shut down
+2026-04-11 11:40:28,744 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:40:28,745 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:40:28,745 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-11 11:40:28,746 - INFO - Added job "send_daily_reminder" to job store "default"
+2026-04-11 11:40:28,746 - INFO - Added job "send_weekly_reminder" to job store "default"
+2026-04-11 11:40:28,746 - INFO - Added job "send_monthly_reminder" to job store "default"
+2026-04-11 11:40:28,746 - INFO - Scheduler started
+2026-04-11 11:40:28,746 - INFO - \U0001f5d3  Birthday reminder scheduler started.

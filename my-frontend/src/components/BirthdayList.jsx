@@ -39,11 +39,12 @@
 // export default BirthdayList
 
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import "../css/BirthdayList.css";
 import MonthGrid from "./MonthGrid";
 import MonthModal from "./MonthModal";
 import CalendarView from "./CalendarView";
+import AddBirthdayModal from "./AddBirthdayModal";
 import { Calendar, Gift } from "lucide-react";
 
 function BirthdayList({ showCalendarView: initialView = false }) {
@@ -53,19 +54,23 @@ function BirthdayList({ showCalendarView: initialView = false }) {
   const [showCalendarView, setShowCalendarView] = useState(initialView);
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  // ISO date string for the "Add Birthday" modal, e.g. "2026-04-11"
+  const [addBirthdayDate, setAddBirthdayDate] = useState(null);
 
-  useEffect(() => {
-    // Fetch birthday data from your API
-    setShowCalendarView(initialView);
-    fetch("http://localhost:8000/birthdays")
+  const fetchBirthdays = useCallback(() => {
+    fetch("http://localhost:8001/birthdays/")
       .then((res) => res.json())
       .then((data) => setBirthdays(data))
-      .catch(err => {
+      .catch((err) => {
         console.error("Failed to fetch birthdays:", err);
-        // Use sample data as fallback
         setBirthdays(sampleBirthdayData);
       });
-  }, [initialView]);
+  }, []);
+
+  useEffect(() => {
+    setShowCalendarView(initialView);
+    fetchBirthdays();
+  }, [initialView, fetchBirthdays]);
 
   // Sample data for fallback
   const sampleBirthdayData = [
@@ -87,27 +92,27 @@ function BirthdayList({ showCalendarView: initialView = false }) {
       const birthdayMonth = new Date(birthday.date).getMonth();
       return birthdayMonth === monthIndex;
     });
-    
+
     setSelectedMonth({
       monthIndex,
       monthName: months[monthIndex],
       birthdays: monthBirthdays
     });
-    
+
     setSelectedDay(null);
   };
 
-  const handleDayClick = (day, monthIndex) => {
-    const monthName = months[monthIndex];
-    const dayBirthdays = birthdays.filter(birthday => {
-      const date = new Date(birthday.date);
-      return date.getMonth() === monthIndex && date.getDate() === day;
-    });
-    
+  // + button on a calendar day → open Add Birthday modal
+  const handleAddClick = (isoDate) => {
+    setAddBirthdayDate(isoDate);
+  };
+
+  // Clicking a birthday name chip → show day-detail modal
+  const handleBirthdayClick = (dayBirthdays, day, monthIndex) => {
     setSelectedDay({
       day,
-      monthName,
-      birthdays: dayBirthdays
+      monthName: months[monthIndex],
+      birthdays: dayBirthdays,
     });
   };
 
@@ -151,19 +156,20 @@ function BirthdayList({ showCalendarView: initialView = false }) {
       </div>
 
       {showCalendarView ? (
-        <CalendarView 
+        <CalendarView
           birthdays={birthdays}
           currentMonth={currentMonth}
           currentYear={currentYear}
           setCurrentMonth={setCurrentMonth}
           setCurrentYear={setCurrentYear}
-          onDayClick={handleDayClick}
+          onAddClick={handleAddClick}
+          onBirthdayClick={handleBirthdayClick}
           months={months}
         />
       ) : (
         <>
-          <MonthGrid 
-            onMonthClick={handleMonthClick} 
+          <MonthGrid
+            onMonthClick={handleMonthClick}
             months={months}
             getBirthdayCount={getBirthdayCountForMonth}
           />
@@ -184,6 +190,14 @@ function BirthdayList({ showCalendarView: initialView = false }) {
           birthdays={selectedDay.birthdays}
           onClose={closeModal}
           isDay={true}
+        />
+      )}
+
+      {addBirthdayDate && (
+        <AddBirthdayModal
+          selectedDate={addBirthdayDate}
+          onClose={() => setAddBirthdayDate(null)}
+          onAddSuccess={fetchBirthdays}
         />
       )}
     </div>
