@@ -3,20 +3,25 @@
     background-color: #2d3748;
     border-radius: 10px;
     overflow: hidden;
-    transition: transform 0.2s, background-color 0.2s;
+    transition: transform 0.2s, background-color 0.2s, opacity 0.3s;
   }
-  
+
+  .birthday-card--deleting {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
   .birthday-card:hover {
     background-color: #3d495c;
     transform: translateY(-2px);
   }
-  
+
   .birthday-card-content {
     padding: 16px;
     display: flex;
     align-items: flex-start;
   }
-  
+
   /* Avatar */
   .avatar {
     width: 48px;
@@ -31,33 +36,84 @@
     color: white;
     flex-shrink: 0;
   }
-  
+
   /* Birthday Details */
   .birthday-details {
     margin-left: 16px;
     flex-grow: 1;
   }
-  
+
   .birthday-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 8px;
   }
-  
+
+  .birthday-header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
   .person-name {
     margin: 0;
     color: #ffffff;
     font-size: 1.1rem;
     font-weight: 600;
   }
+
   .person-age {
     font-size: 0.875rem;
     color: #a0aec0;
     padding: 2px 8px;
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 12px;
+    white-space: nowrap;
   }
+
+  /* Delete Button */
+  .delete-btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: rgba(239, 68, 68, 0.1);
+    border-radius: 8px;
+    color: #f87171;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .delete-btn:hover {
+    background-color: rgba(239, 68, 68, 0.25);
+    color: #fca5a5;
+    transform: scale(1.05);
+  }
+
+  .delete-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .delete-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .delete-icon.spinning {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
   .detail-row {
     display: flex;
     align-items: center;

@@ -5,6 +5,7 @@ from datetime import date, timedelta
 from backend.utils.config import MY_EMAIL, APP_PASSWORD, SENDER_EMAIL
 from backend.database.database import engine
 import smtplib
+import json
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import logging
@@ -12,6 +13,7 @@ from difflib import SequenceMatcher
 from pathlib import Path
 
 _LOG_FILE = Path(__file__).parent / "birthday_email.log"
+_TRACKER_FILE = Path(__file__).resolve().parent.parent / "database" / "reminder_tracker.json"
 
 logging.basicConfig(
     filename=str(_LOG_FILE),
@@ -170,6 +172,37 @@ def _build_email_html(title: str, subtitle: str, birthdays: list[Birthday]) -> s
 
 
 # ─────────────────────────────────────────────
+#  DEDUPLICATION TRACKER  (JSON file)
+# ─────────────────────────────────────────────
+
+def _load_tracker() -> dict:
+    """Load the reminder tracker from disk."""
+    if _TRACKER_FILE.exists():
+        try:
+            return json.loads(_TRACKER_FILE.read_text())
+        except (json.JSONDecodeError, OSError):
+            return {}
+    return {}
+
+
+def _save_tracker(data: dict):
+    """Persist the reminder tracker to disk."""
+    _TRACKER_FILE.write_text(json.dumps(data, default=str))
+
+
+def _already_sent(reminder_type: str, period_key: str) -> bool:
+    """Return True if a reminder of this type was already sent for the given period."""
+    return _load_tracker().get(reminder_type) == period_key
+
+
+def _mark_sent(reminder_type: str, period_key: str):
+    """Record that a reminder of this type was sent for the given period."""
+    tracker = _load_tracker()
+    tracker[reminder_type] = period_key
+    _save_tracker(tracker)
+
+
+# ─────────────────────────────────────────────
 #  SCHEDULED REMINDER SENDERS
 # ─────────────────────────────────────────────
 
@@ -180,7 +213,7 @@ def send_daily_reminder():
         all_bdays = session.exec(select(Birthday)).all()
         birthdays = [
             b for b in all_bdays
-            if b.date.month == today.month and b.date.day == today.day
+            if b.date.month == today.month and b.date.day == today.day and b.last_reminded != today
         ]
         if not birthdays:
             logging.info("No birthdays today — skipping daily reminder.")
@@ -200,6 +233,12 @@ def send_daily_reminder():
 def send_weekly_reminder():
     """Send reminder for this week's birthdays (Mon–Sun)."""
     today = date.today()
+    iso = today.isocalendar()
+    week_key = f"{iso.year}-W{iso.week:02d}"
+    if _already_sent("weekly", week_key):
+        logging.info("Weekly reminder already sent for %s — skipping.", week_key)
+        return
+
     week_end = today + timedelta(days=6)
     with Session(engine) as session:
         all_bdays = session.exec(select(Birthday)).all()
@@ -219,11 +258,17 @@ def send_weekly_reminder():
         subtitle = f"Week of {today.strftime('%d %B')} – {week_end.strftime('%d %B %Y')}"
         html = _build_email_html("Weekly Reminder", subtitle, this_week)
         _send_email(subject, html)
+        _mark_sent("weekly", week_key)
 
 
 def send_monthly_reminder():
     """Send reminder for this month's birthdays."""
     today = date.today()
+    month_key = f"{today.year}-{today.month:02d}"
+    if _already_sent("monthly", month_key):
+        logging.info("Monthly reminder already sent for %s — skipping.", month_key)
+        return
+
     with Session(engine) as session:
         all_bdays = session.exec(select(Birthday)).all()
         birthdays = sorted(
@@ -240,3 +285,4 @@ def send_monthly_reminder():
         subtitle = f"All birthdays in {month_name}"
         html = _build_email_html("Monthly Reminder", subtitle, birthdays)
         _send_email(subject, html)
+        _mark_sent("monthly", month_key)

@@ -19,12 +19,18 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s",
 )
 
-scheduler = AsyncIOScheduler()
+scheduler = AsyncIOScheduler(job_defaults={"misfire_grace_time": 1})
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     create_db_and_tables()
+
+    # ✅ RUN ON STARTUP (catch missed reminders)
+    logging.info("Running missed reminders on startup...")
+    send_daily_reminder()
+    send_weekly_reminder()
+    send_monthly_reminder()
 
     # ── Daily reminder: every day at 09:00 ──────────────────────────────────
     scheduler.add_job(
