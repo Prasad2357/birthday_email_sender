@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import "../css/Navbar.css";
-import { Calendar, PlusCircle, Settings, Home } from 'lucide-react';
+import { Calendar, Settings, Gift } from 'lucide-react';
 
 function Navbar() {
   const location = useLocation();
@@ -9,35 +9,20 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-brand">
-        <h2>Birthday App</h2>
+        <div className="brand-logo">
+          <Gift className="brand-icon" />
+        </div>
+        <h2>Reminday</h2>
       </div>
       
       <ul className="nav-links">
         <li className="nav-item">
           <Link 
             to="/" 
-            className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
-          >
-            <Home className="nav-icon" />
-            <span>Home</span>
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link 
-            to="/calendar" 
-            className={`nav-link ${location.pathname === '/calendar' ? 'active' : ''}`}
+            className={`nav-link ${location.pathname === '/' || location.pathname === '/calendar' ? 'active' : ''}`}
           >
             <Calendar className="nav-icon" />
             <span>Calendar</span>
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link 
-            to="/userform" 
-            className={`nav-link ${location.pathname === '/userform' ? 'active' : ''}`}
-          >
-            <PlusCircle className="nav-icon" />
-            <span>Add Birthday</span>
           </Link>
         </li>
         <li className="nav-item">

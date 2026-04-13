@@ -1,9 +1,8 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import BirthdayList from '../components/BirthdayList';
 import Navbar from '../components/Navbar';
-import UserForm from '../components/AddBirthdayForm';
-import Home from '../pages/Home' // <-- Add this
+import Settings from '../pages/Settings';
 
 function AppRoutes() {
   return (
@@ -11,10 +10,9 @@ function AppRoutes() {
       <Navbar />
       <main className="main-content">
         <Routes>
-          <Route path="/" element={<Home />} /> {/* Updated */}
-          <Route path="/calendar" element={<BirthdayList showCalendarView={true} />} />
-          <Route path="/userform" element={<UserForm />} />
-          <Route path="/settings" element={<div>Settings page coming soon...</div>} />
+          <Route path="/" element={<BirthdayList showCalendarView={true} />} />
+          <Route path="/calendar" element={<Navigate to="/" replace />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </main>
     </div>

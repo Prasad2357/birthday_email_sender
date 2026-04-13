@@ -1,0 +1,6 @@
+ 
+
+Maybe create an App
+
+Edit name and date of birthday(add year as well)
+scroll bar in grid view (add option to add year as well for individual while adding)

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "../css/AddBirthdayModal.css";
 
-const API_BASE = "http://localhost:8001";
+const API_BASE = "http://localhost:8000";
 
 function AddBirthdayModal({ selectedDate, onClose, onAddSuccess }) {
   const [name, setName] = useState("");

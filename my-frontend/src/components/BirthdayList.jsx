@@ -58,7 +58,7 @@ function BirthdayList({ showCalendarView: initialView = false }) {
   const [addBirthdayDate, setAddBirthdayDate] = useState(null);
 
   const fetchBirthdays = useCallback(() => {
-    fetch("http://localhost:8001/birthdays/")
+    fetch("http://localhost:8000/birthdays/")
       .then((res) => res.json())
       .then((data) => setBirthdays(data))
       .catch((err) => {
@@ -181,6 +181,7 @@ function BirthdayList({ showCalendarView: initialView = false }) {
           month={selectedMonth.monthName}
           birthdays={selectedMonth.birthdays}
           onClose={closeModal}
+          onBirthdayDeleted={fetchBirthdays}
         />
       )}
 
@@ -190,6 +191,7 @@ function BirthdayList({ showCalendarView: initialView = false }) {
           birthdays={selectedDay.birthdays}
           onClose={closeModal}
           isDay={true}
+          onBirthdayDeleted={fetchBirthdays}
         />
       )}
 
