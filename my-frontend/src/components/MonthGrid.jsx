@@ -1,59 +1,39 @@
-// import React from "react";
-// import "../css/MonthGrid.css"; // Create this file for styling
-
-// const months = [
-//     "January", "February", "March", "April", "May", "June",
-//     "July", "August", "September", "October", "November", "December"
-//   ];
-  
-//   function MonthGrid({ onMonthClick }) {
-//     return (
-//       <div className="grid-container">
-//         {months.map((month, index) => (
-//           <div key={index} className="month-tile" onClick={() => onMonthClick(index + 1)}>
-//             {month}
-//           </div>
-//         ))}
-//       </div>
-//     );
-//   }
-
-// export default MonthGrid;
-  
-
-
 import React from "react";
-import "../css/MonthGrid.css";
-import { Gift } from "lucide-react";
 
 function MonthGrid({ onMonthClick, months, getBirthdayCount }) {
   const currentMonth = new Date().getMonth();
 
+  const monthEmojis = [
+    "❄️", "💝", "🌸", "🌺", "🌻", "🌊",
+    "☀️", "🏖️", "🍂", "🎃", "🍁", "🎄"
+  ];
+
+  const maxBirthdays = 20; // For the fill bar visualization
+
   return (
-    <div className="grid-container">
-      {months.map((month, index) => {
-        const birthdayCount = getBirthdayCount(index);
-        const isCurrentMonth = currentMonth === index;
-        
-        return (
-          <div 
-            key={index} 
-            className={`month-tile ${isCurrentMonth ? 'current-month' : ''}`}
-            onClick={() => onMonthClick(index)}
-          >
-            <span className="month-name">{month}</span>
-            
-            {birthdayCount > 0 ? (
-              <div className="birthday-indicator">
-                <Gift className="gift-icon" />
-                <span>{birthdayCount} {birthdayCount === 1 ? "birthday" : "birthdays"}</span>
+    <div className="gv">
+      <div className="gmonths">
+        {months.map((month, index) => {
+          const count = getBirthdayCount(index);
+          const isCur = index === currentMonth;
+          const fillWidth = Math.min(100, (count / maxBirthdays) * 100);
+
+          return (
+            <div 
+              key={index} 
+              className={`mcard ${isCur ? 'cur' : ''}`}
+              onClick={() => onMonthClick(index)}
+            >
+              <div className="mc-em">{monthEmojis[index]}</div>
+              <div className="mc-name">{month}</div>
+              <div className="mc-ct">{count} birthdays</div>
+              <div className="mc-bar">
+                <div className="mc-fill" style={{ width: `${fillWidth}%` }}></div>
               </div>
-            ) : (
-              <span className="no-birthdays">No birthdays</span>
-            )}
-          </div>
-        );
-      })}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

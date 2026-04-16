@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reminday — Birthday Calendar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -33,19 +42,9 @@
   --rad-xs: 7px;
 }
 
-html, body { 
-  height: 100%; 
-  background: var(--bg); 
-  color: var(--text); 
-  font-family: var(--font-b); 
-  overflow: hidden; 
-}
+html, body { height: 100%; background: var(--bg); color: var(--text); font-family: var(--font-b); overflow: hidden; }
 
-#root {
-  height: 100%;
-}
-
-.app { display: flex; height: 100vh; width: 100%; }
+.app { display: flex; height: 100vh; }
 
 /* ── SIDEBAR ── */
 .sidebar {
@@ -100,7 +99,6 @@ html, body {
   color: var(--muted); font-weight: 400;
   transition: all 0.18s; border: 1px solid transparent;
   letter-spacing: 0.1px;
-  text-decoration: none;
 }
 .nav-item:hover { color: var(--text); background: rgba(120,100,180,0.07); }
 .nav-item.on { color: var(--text); background: rgba(255,95,126,0.10); border-color: rgba(255,95,126,0.25); }
@@ -351,7 +349,7 @@ html, body {
 .bm { background: rgba(91,156,246,0.14); color: var(--b); border: 1px solid rgba(91,156,246,0.25); }
 
 /* GRID VIEW */
-.gv { display: block; }
+.gv { display: none; }
 .gmonths { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
 
 .mcard {
@@ -373,9 +371,10 @@ html, body {
 .overlay {
   position: fixed; inset: 0;
   background: rgba(26,21,48,0.45);
-  display: flex; align-items: center; justify-content: center;
+  display: none; align-items: center; justify-content: center;
   z-index: 200; backdrop-filter: blur(6px);
 }
+.overlay.show { display: flex; }
 
 .modal {
   background: #fff; border: 1px solid var(--border2);
@@ -468,25 +467,280 @@ html, body {
 .av6 { background: linear-gradient(135deg,#5B9CF6,#5CDB95); }
 .av7 { background: linear-gradient(135deg,#FF9559,#FF79C6); }
 .av8 { background: linear-gradient(135deg,#22C1C3,#FDBB2D); }
+</style>
+</head>
+<body>
 
-/* Settings & Form styles */
-.settings-container { max-width: 600px; margin: 0 auto; background: var(--s1); padding: 30px; border-radius: var(--rad); border: 1px solid var(--border); }
-.settings-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
-.settings-header h1 { font-family: var(--font-h); font-size: 24px; }
-.settings-subtitle { font-size: 14px; color: var(--muted); }
-.settings-section { margin-bottom: 24px; }
-.section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-.section-label h3 { font-size: 15px; font-family: var(--font-h); }
-.section-label p { font-size: 12px; color: var(--muted); }
-.settings-field { position: relative; }
-.settings-field input { width: 100%; padding: 12px; background: var(--s2); border: 1px solid var(--border2); border-radius: var(--rad-xs); font-family: var(--font-b); font-size: 14px; outline: none; transition: border-color 0.2s; }
-.settings-field input:focus { border-color: var(--r); }
-.password-field { display: flex; gap: 8px; }
-.toggle-password-btn { background: transparent; border: none; color: var(--muted); cursor: pointer; padding: 0 10px; }
-.settings-info-box { background: var(--s3); padding: 15px; border-radius: var(--rad-xs); font-size: 13px; margin-bottom: 24px; display: flex; gap: 12px; line-height: 1.5; }
-.info-icon { color: var(--b); flex-shrink: 0; }
-.settings-alert { padding: 12px; border-radius: var(--rad-xs); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-size: 14px; }
-.settings-alert--success { background: rgba(92, 219, 149, 0.15); color: #2e7d32; border: 1px solid rgba(92, 219, 149, 0.3); }
-.settings-alert--error { background: rgba(255, 95, 126, 0.15); color: var(--r); border: 1px solid rgba(255, 95, 126, 0.3); }
-.save-btn { width: 100%; padding: 12px; background: var(--grad-hero); border: none; border-radius: var(--rad-xs); color: #fff; font-family: var(--font-h); font-size: 15px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: opacity 0.2s; }
-.save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+<div class="app">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="logo">
+      <div class="logo-mark">🎂</div>
+      <div class="logo-name">Remin<em>day</em></div>
+    </div>
+
+    <div class="nav-group">
+      <span class="nav-label">Main</span>
+      <div class="nav-item on" onclick="setView('cal')"><span class="ni">📅</span> Calendar</div>
+      <div class="nav-item" onclick="setView('grid')"><span class="ni">⊞</span> All Months</div>
+      <div class="nav-item"><span class="ni">🔔</span> Reminders</div>
+    </div>
+    <div class="nav-group">
+      <span class="nav-label">Manage</span>
+      <div class="nav-item" onclick="document.getElementById('add-overlay').classList.add('show')"><span class="ni">＋</span> Add Birthday</div>
+      <div class="nav-item"><span class="ni">⚙</span> Settings</div>
+    </div>
+
+    <div class="sidebar-bottom">
+      <div class="countdown-strip" style="margin-bottom:12px">
+        <div class="cs-label">🎉 Next birthday</div>
+        <div class="cs-name">Rohan More</div>
+        <div class="cs-date">July 25 · turning 28</div>
+        <div class="cs-days">12 <span>days away</span></div>
+      </div>
+      <div class="upcoming-list">
+        <div class="up-row">
+          <div class="up-av av1">RO</div>
+          <div class="up-info"><div class="up-name">Rohan More</div><div class="up-date">July 25</div></div>
+          <div class="up-d">12d</div>
+        </div>
+        <div class="up-row">
+          <div class="up-av av2">SS</div>
+          <div class="up-info"><div class="up-name">Suraj S.</div><div class="up-date">July 28</div></div>
+          <div class="up-d">15d</div>
+        </div>
+        <div class="up-row">
+          <div class="up-av av3">PR</div>
+          <div class="up-info"><div class="up-name">Priya Rao</div><div class="up-date">Aug 3</div></div>
+          <div class="up-d">21d</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+    <div class="topbar">
+      <div class="tb-left">
+        <h1>Birthday Calendar <span style="font-size:18px">🎈</span></h1>
+        <p id="tb-sub">July 2026 · 2 birthdays this month</p>
+      </div>
+      <div class="tb-right">
+        <div class="vtoggle">
+          <button class="vt on" id="vt-c" onclick="setView('cal')">Calendar</button>
+          <button class="vt" id="vt-g" onclick="setView('grid')">Grid</button>
+        </div>
+        <div class="chip chip-ghost"><span>🎂</span> <span id="tot">8 birthdays</span></div>
+        <div class="chip chip-add" onclick="document.getElementById('add-overlay').classList.add('show')"><span>＋</span> Add</div>
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- STATS -->
+      <div class="stats">
+        <div class="scard"><div class="scard-em">🎂</div><div class="scard-n">77</div><div class="scard-l">Total birthdays</div></div>
+        <div class="scard"><div class="scard-em">⚡</div><div class="scard-n">12</div><div class="scard-l">Days to next</div></div>
+        <div class="scard"><div class="scard-em">📅</div><div class="scard-n">2</div><div class="scard-l">This month</div></div>
+        <div class="scard"><div class="scard-em">🌟</div><div class="scard-n">3</div><div class="scard-l">This quarter</div></div>
+      </div>
+
+      <!-- CALENDAR VIEW -->
+      <div id="cv" class="mg">
+        <div class="cal-card">
+          <div class="cal-head">
+            <div class="cal-title" id="cal-lbl">July 2026</div>
+            <div class="cal-nav">
+              <button class="cal-nb" onclick="cm(-1)">‹</button>
+              <button class="cal-nb" onclick="cm(1)">›</button>
+            </div>
+          </div>
+          <div class="cal-body">
+            <div class="cal-dh">
+              <div class="cal-dl">Sun</div><div class="cal-dl">Mon</div><div class="cal-dl">Tue</div>
+              <div class="cal-dl">Wed</div><div class="cal-dl">Thu</div><div class="cal-dl">Fri</div><div class="cal-dl">Sat</div>
+            </div>
+            <div class="cal-cells" id="cells"></div>
+          </div>
+        </div>
+
+        <div class="rp">
+          <div class="hero-card">
+            <div class="hc-tag">🎉 Up next</div>
+            <div class="hc-name">Rohan More</div>
+            <div class="hc-sub">July 25, 1998 · turning 28</div>
+            <div class="hc-count">
+              <div class="hc-box"><div class="hc-num">12</div><div class="hc-unit">days</div></div>
+              <div class="hc-box"><div class="hc-num">0</div><div class="hc-unit">hours</div></div>
+              <div class="hc-box"><div class="hc-num">00</div><div class="hc-unit">mins</div></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="sec-head">
+              <div class="sec-title">Upcoming Birthdays</div>
+              <div class="sec-more">See all →</div>
+            </div>
+            <div class="blist">
+              <div class="brow" onclick="openDetail('Rohan More','July 25, 1998','28','12','av1','RO')">
+                <div class="bav av1">RO</div>
+                <div class="bi"><div class="bn">Rohan More</div><div class="bd">July 25 · turning 28</div></div>
+                <div class="badge bs">12d</div>
+              </div>
+              <div class="brow" onclick="openDetail('Suraj Suryawanshi','July 28, 2000','26','15','av2','SS')">
+                <div class="bav av2">SS</div>
+                <div class="bi"><div class="bn">Suraj Suryawanshi</div><div class="bd">July 28 · turning 26</div></div>
+                <div class="badge bw">15d</div>
+              </div>
+              <div class="brow" onclick="openDetail('Priya Rao','Aug 3, 1997','29','21','av3','PR')">
+                <div class="bav av3">PR</div>
+                <div class="bi"><div class="bn">Priya Rao</div><div class="bd">Aug 3 · turning 29</div></div>
+                <div class="badge bm">21d</div>
+              </div>
+              <div class="brow">
+                <div class="bav av4">AK</div>
+                <div class="bi"><div class="bn">Aditya Kumar</div><div class="bd">Aug 11 · turning 30</div></div>
+                <div class="badge bm">29d</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRID VIEW -->
+      <div id="gv" class="gv">
+        <div class="gmonths">
+          <div class="mcard"><div class="mc-em">❄️</div><div class="mc-name">January</div><div class="mc-ct">10 birthdays</div><div class="mc-bar"><div class="mc-fill" style="width:83%"></div></div></div>
+          <div class="mcard"><div class="mc-em">💝</div><div class="mc-name">February</div><div class="mc-ct">7 birthdays</div><div class="mc-bar"><div class="mc-fill" style="width:58%"></div></div></div>
+          <div class="mcard"><div class="mc-em">🌸</div><div class="mc-name">March</div><div class="mc-ct">11 birthdays</div><div class="mc-bar"><div class="mc-fill" style="width:92%"></div></div></div>
+          <div class="mcard cur"><div class="mc-em">🌺</div><div class="mc-name">April</div><div class="mc-ct">8 birthdays</div><div class="mc-bar"><div class="mc-fill" style="width:67%"></div></div></div>
+          <div class="mcard"><div class="mc-em">🌻</div><div class="mc-name">May</div><div class="mc-ct">3 birthdays</div><div class="mc-bar"><div class="mc-fill" style="width:25%"></div></div></div>
+          <div class="mcard"><div class="mc-em">🌊</div><div class="mc-name">June</div><div class="mc-ct">5 birthdays</div><div class="mc-bar"><div class="mc-fill" style="width:42%"></div></div></div>
+          <div class="mcard"><div class="mc-em">☀️</div><div class="mc-name">July</div><div class="mc-ct">2 birthdays</div><div class="mc-bar"><div class="mc-fill" style="width:17%"></div></div></div>
+          <div class="mcard"><div class="mc-em">🏖️</div><div class="mc-name">August</div><div class="mc-ct">5 birthdays</div><div class="mc-bar"><div class="mc-fill" style="width:42%"></div></div></div>
+          <div class="mcard"><div class="mc-em">🍂</div><div class="mc-name">September</div><div class="mc-ct">5 birthdays</div><div class="mc-bar"><div class="mc-fill" style="width:42%"></div></div></div>
+          <div class="mcard"><div class="mc-em">🎃</div><div class="mc-name">October</div><div class="mc-ct">6 birthdays</div><div class="mc-bar"><div class="mc-fill" style="width:50%"></div></div></div>
+          <div class="mcard"><div class="mc-em">🍁</div><div class="mc-name">November</div><div class="mc-ct">6 birthdays</div><div class="mc-bar"><div class="mc-fill" style="width:50%"></div></div></div>
+          <div class="mcard"><div class="mc-em">🎄</div><div class="mc-name">December</div><div class="mc-ct">3 birthdays</div><div class="mc-bar"><div class="mc-fill" style="width:25%"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD MODAL -->
+<div class="overlay" id="add-overlay" onclick="if(event.target===this)this.classList.remove('show')">
+  <div class="modal">
+    <button class="m-x" onclick="document.getElementById('add-overlay').classList.remove('show')">×</button>
+    <div class="m-icon">🎂</div>
+    <div class="m-title">Add a Birthday</div>
+    <div class="m-sub">Who's celebrating next? 🎉</div>
+    <div class="fg"><label class="fl">Full Name</label><input class="fi" type="text" placeholder="Enter their full name"></div>
+    <div class="fg"><label class="fl">Date of Birth</label><input class="fi" type="date"></div>
+    <div class="fg"><label class="fl">Relationship (optional)</label><input class="fi" type="text" placeholder="Friend, Family, Colleague..."></div>
+    <div class="ma">
+      <button class="btn-c" onclick="document.getElementById('add-overlay').classList.remove('show')">Cancel</button>
+      <button class="btn-p">🎉 Add Birthday</button>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="overlay" id="det-overlay" onclick="if(event.target===this)this.classList.remove('show')">
+  <div class="modal">
+    <button class="m-x" onclick="document.getElementById('det-overlay').classList.remove('show')">×</button>
+    <div class="d-head">
+      <div class="bav d-av" id="d-av" style="width:50px;height:50px;font-size:16px">RO</div>
+      <div><div class="d-n" id="d-name">Rohan More</div><div class="d-s" id="d-dob">July 25, 1998</div></div>
+    </div>
+    <div class="d-stats">
+      <div class="ds"><div class="ds-n" id="d-age">28</div><div class="ds-l">Turning</div></div>
+      <div class="ds"><div class="ds-n" id="d-days">12</div><div class="ds-l">Days away</div></div>
+      <div class="ds"><div class="ds-n">🎂</div><div class="ds-l">Celebrate!</div></div>
+    </div>
+    <div class="d-act">
+      <button class="btn-ic" title="Send wish">💌</button>
+      <button class="btn-ic" title="Edit">✏️</button>
+      <button class="btn-ic" title="Delete">🗑️</button>
+      <button class="btn-p" style="flex:1;padding:9px 14px;font-size:13px;border-radius:8px">Set Reminder 🔔</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const BDAYS = {
+  '2026-07-25': [{name:'Rohan More',av:'av1',init:'RO',age:28}],
+  '2026-07-28': [{name:'Suraj Suryawanshi',av:'av2',init:'SS',age:26}],
+  '2026-08-03': [{name:'Priya Rao',av:'av3',init:'PR',age:29}],
+  '2026-04-22': [{name:'Kiran M.',av:'av5',init:'KM',age:31}],
+};
+
+let cy = 2026, cm_ = 6;
+const MN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function pad(n){ return n<10?'0'+n:n; }
+
+function renderCal(){
+  const first = new Date(cy, cm_, 1);
+  const last = new Date(cy, cm_+1, 0).getDate();
+  const dow = first.getDay();
+  const prevLast = new Date(cy, cm_, 0).getDate();
+  const today = new Date();
+
+  document.getElementById('cal-lbl').textContent = MN[cm_]+' '+cy;
+
+  const avs = ['av1','av2','av3','av4','av5','av6','av7','av8'];
+  let h = '';
+
+  for(let i=dow-1;i>=0;i--){
+    h += `<div class="cell om"><div class="dn">${prevLast-i}</div></div>`;
+  }
+
+  for(let d=1;d<=last;d++){
+    const dk = `${cy}-${pad(cm_+1)}-${pad(d)}`;
+    const isT = today.getFullYear()===cy && today.getMonth()===cm_ && today.getDate()===d;
+    const bds = BDAYS[dk]||[];
+    const dots = bds.map((b,i)=>`<div class="bdot ${avs[i%8]}">${b.init[0]}</div>`).join('');
+    const click = bds.length ? `onclick="openDetail('${bds[0].name}','','${bds[0].age}','','${bds[0].av}','${bds[0].init}')"` : '';
+    h += `<div class="cell ${isT?'today':''}" ${click}><div class="dn">${d}</div>${bds.length?`<div class="bdots">${dots}</div>`:''}</div>`;
+  }
+
+  const total = dow + last;
+  const rem = (7 - (total%7))%7;
+  for(let d=1;d<=rem;d++) h += `<div class="cell om"><div class="dn">${d}</div></div>`;
+
+  document.getElementById('cells').innerHTML = h;
+}
+
+function cm(dir){
+  cm_ += dir;
+  if(cm_>11){cm_=0;cy++;}
+  if(cm_<0){cm_=11;cy--;}
+  renderCal();
+  document.getElementById('tb-sub').textContent = MN[cm_]+' '+cy+' · calendar';
+}
+
+function setView(v){
+  document.getElementById('cv').style.display = v==='cal'?'grid':'none';
+  document.getElementById('gv').style.display = v==='grid'?'block':'none';
+  document.getElementById('vt-c').classList.toggle('on',v==='cal');
+  document.getElementById('vt-g').classList.toggle('on',v==='grid');
+  document.getElementById('tb-sub').textContent = v==='cal'?'July 2026 · 2 birthdays this month':'All months overview · 77 birthdays total';
+  document.querySelectorAll('.nav-item').forEach((el,i)=>{ if(i<2) el.classList.remove('on'); });
+  document.querySelectorAll('.nav-item')[v==='cal'?0:1].classList.add('on');
+}
+
+function openDetail(name,dob,age,days,av,init){
+  document.getElementById('d-name').textContent=name;
+  document.getElementById('d-dob').textContent=dob;
+  document.getElementById('d-age').textContent=age;
+  document.getElementById('d-days').textContent=days;
+  const el=document.getElementById('d-av');
+  el.textContent=init;
+  el.className='bav d-av '+av;
+  document.getElementById('det-overlay').classList.add('show');
+}
+
+renderCal();
+</script>
+</body>
+</html>

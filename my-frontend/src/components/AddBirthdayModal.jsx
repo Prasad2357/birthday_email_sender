@@ -1,140 +1,91 @@
 import { useState, useEffect } from "react";
-import "../css/AddBirthdayModal.css";
 
 const API_BASE = "http://localhost:8000";
 
 function AddBirthdayModal({ selectedDate, onClose, onAddSuccess }) {
   const [name, setName] = useState("");
   const [date, setDate] = useState(selectedDate || "");
-  const [status, setStatus] = useState(null); // { type: 'error'|'success'|'duplicate', message }
+  const [relationship, setRelationship] = useState("");
   const [loading, setLoading] = useState(false);
-  const [duplicateInfo, setDuplicateInfo] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (selectedDate) setDate(selectedDate);
   }, [selectedDate]);
 
-  // Auto-dismiss success after 2s
-  useEffect(() => {
-    if (status?.type === "success") {
-      const t = setTimeout(() => {
-        onAddSuccess();
-        onClose();
-      }, 1500);
-      return () => clearTimeout(t);
-    }
-  }, [status]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus(null);
-    setDuplicateInfo(null);
+    if (loading) return;
     setLoading(true);
+    setError(null);
 
     try {
       const res = await fetch(`${API_BASE}/birthdays/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name.trim(), date }),
+        body: JSON.stringify({ name: name.trim(), date, relationship: relationship.trim() }),
       });
 
-      const data = await res.json();
-
-      if (res.status === 409) {
-        // Duplicate found by backend
-        setDuplicateInfo(data.detail);
-        setStatus({
-          type: "duplicate",
-          message: data.detail,
-        });
-      } else if (!res.ok) {
-        setStatus({ type: "error", message: data.detail || "Something went wrong." });
-      } else {
-        setStatus({ type: "success", message: `🎉 "${data.name}" added successfully!` });
-        setName("");
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.detail || "Failed to add birthday");
       }
+
+      onAddSuccess();
+      onClose();
     } catch (err) {
-      setStatus({ type: "error", message: "Network error. Is the backend running?" });
+      setError(err.message);
     } finally {
       setLoading(false);
     }
   };
 
-  // Format date for display in title: e.g. "April 11"
-  const formattedDate = date
-    ? new Date(date + "T00:00:00").toLocaleDateString("en-US", { month: "long", day: "numeric" })
-    : "";
-
   return (
-    <div className="abm-overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="abm-modal" role="dialog" aria-modal="true" aria-labelledby="abm-title">
-        {/* Header */}
-        <div className="abm-header">
-          <div className="abm-title-group">
-            <span className="abm-cake">🎂</span>
-            <div>
-              <h2 id="abm-title">Add Birthday</h2>
-              {formattedDate && <p className="abm-subtitle">{formattedDate}</p>}
-            </div>
-          </div>
-          <button className="abm-close-btn" onClick={onClose} aria-label="Close">
-            ✕
-          </button>
-        </div>
+    <div className="overlay show" onClick={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="modal">
+        <button className="m-x" onClick={onClose}>×</button>
+        <div className="m-icon">🎂</div>
+        <div className="m-title">Add a Birthday</div>
+        <div className="m-sub">Who's celebrating next? 🎉</div>
+        
+        {error && <div style={{ color: 'var(--r)', fontSize: '12px', marginBottom: '10px' }}>{error}</div>}
 
-        {/* Status Banner */}
-        {status && (
-          <div className={`abm-alert abm-alert--${status.type}`}>
-            {status.type === "success" && <span className="abm-alert-icon">✅</span>}
-            {status.type === "error" && <span className="abm-alert-icon">❌</span>}
-            {status.type === "duplicate" && <span className="abm-alert-icon">⚠️</span>}
-            <span>{status.message}</span>
-          </div>
-        )}
-
-        {/* Form */}
-        <form className="abm-form" onSubmit={handleSubmit} autoComplete="off">
-          <div className="abm-field">
-            <label htmlFor="abm-name">Name</label>
-            <input
-              id="abm-name"
-              type="text"
+        <form onSubmit={handleSubmit}>
+          <div className="fg">
+            <label className="fl">Full Name</label>
+            <input 
+              className="fi" 
+              type="text" 
+              placeholder="Enter their full name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Enter full name"
               required
-              disabled={loading || status?.type === "success"}
             />
           </div>
-
-          <div className="abm-field">
-            <label htmlFor="abm-date">Date</label>
-            <input
-              id="abm-date"
+          <div className="fg">
+            <label className="fl">Date of Birth</label>
+            <input 
+              className="fi" 
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
               required
-              disabled={loading || status?.type === "success"}
             />
           </div>
-
-          <div className="abm-actions">
-            <button type="button" className="abm-btn abm-btn--cancel" onClick={onClose}>
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="abm-btn abm-btn--submit"
-              disabled={loading || status?.type === "success"}
-            >
-              {loading ? (
-                <span className="abm-spinner" />
-              ) : status?.type === "success" ? (
-                "Added! ✓"
-              ) : (
-                "Add Birthday"
-              )}
+          <div className="fg">
+            <label className="fl">Relationship (optional)</label>
+            <input 
+              className="fi" 
+              type="text" 
+              placeholder="Friend, Family, Colleague..."
+              value={relationship}
+              onChange={(e) => setRelationship(e.target.value)}
+            />
+          </div>
+          <div className="ma">
+            <button type="button" className="btn-c" onClick={onClose}>Cancel</button>
+            <button type="submit" className="btn-p" disabled={loading}>
+              {loading ? "Adding..." : "🎉 Add Birthday"}
             </button>
           </div>
         </form>
