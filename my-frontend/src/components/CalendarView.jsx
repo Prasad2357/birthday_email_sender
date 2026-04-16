@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import "../css/CalendarView.css";
-import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
+import React from "react";
 
 function CalendarView({
   birthdays,
@@ -8,19 +6,18 @@ function CalendarView({
   currentYear,
   setCurrentMonth,
   setCurrentYear,
-  onAddClick,       // (isoDate) → open Add Birthday modal
-  onBirthdayClick,  // (birthday[]) → show day-detail modal
+  onAddClick,
+  onBirthdayClick,
   months
 }) {
-  const [highlightedDay, setHighlightedDay] = useState(null);
-
   const getDaysInMonth = (year, month) => new Date(year, month + 1, 0).getDate();
   const getFirstDayOfMonth = (year, month) => new Date(year, month, 1).getDay();
+  const getPrevMonthDays = (year, month) => new Date(year, month, 0).getDate();
 
-  const getBirthdaysForDay = (day) =>
+  const getBirthdaysForDay = (day, month = currentMonth, year = currentYear) =>
     birthdays.filter((b) => {
       const d = new Date(b.date);
-      return d.getMonth() === currentMonth && d.getDate() === day;
+      return d.getMonth() === month && d.getDate() === day;
     });
 
   const buildIso = (day) => {
@@ -29,116 +26,84 @@ function CalendarView({
     return `${currentYear}-${m}-${d}`;
   };
 
-  const handlePrevMonth = () => {
-    if (currentMonth === 0) { setCurrentMonth(11); setCurrentYear(currentYear - 1); }
-    else setCurrentMonth(currentMonth - 1);
-    setHighlightedDay(null);
+  const cm = (dir) => {
+    let newMonth = currentMonth + dir;
+    let newYear = currentYear;
+    if (newMonth > 11) { newMonth = 0; newYear++; }
+    else if (newMonth < 0) { newMonth = 11; newYear--; }
+    setCurrentMonth(newMonth);
+    setCurrentYear(newYear);
   };
 
-  const handleNextMonth = () => {
-    if (currentMonth === 11) { setCurrentMonth(0); setCurrentYear(currentYear + 1); }
-    else setCurrentMonth(currentMonth + 1);
-    setHighlightedDay(null);
-  };
+  const getInitials = (name) => name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 1);
+  const getAvClass = (index) => `av${(index % 8) + 1}`;
 
-  // Plus button → add birthday modal
-  const handleAddClick = (e, day) => {
-    e.stopPropagation();
-    setHighlightedDay(day);
-    onAddClick(buildIso(day));
-  };
-
-  // Birthday name chip → show detail modal for that day
-  const handleBirthdayChipClick = (e, day) => {
-    e.stopPropagation();
-    setHighlightedDay(day);
-    onBirthdayClick(getBirthdaysForDay(day), day, currentMonth);
-  };
-
-  const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const firstDay = getFirstDayOfMonth(currentYear, currentMonth);
   const daysInMonth = getDaysInMonth(currentYear, currentMonth);
-  const trailingEmpty = (7 - ((firstDay + daysInMonth) % 7)) % 7;
+  const prevMonthDays = getPrevMonthDays(currentYear, currentMonth);
+  const today = new Date();
+
+  const cells = [];
+  // Leading empty cells
+  for (let i = firstDay - 1; i >= 0; i--) {
+    cells.push(
+      <div key={`prev-${i}`} className="cell om">
+        <div className="dn">{prevMonthDays - i}</div>
+      </div>
+    );
+  }
+
+  // Current month cells
+  for (let d = 1; d <= daysInMonth; d++) {
+    const isToday = today.getFullYear() === currentYear && today.getMonth() === currentMonth && today.getDate() === d;
+    const dayBirthdays = getBirthdaysForDay(d);
+    
+    cells.push(
+      <div 
+        key={`curr-${d}`} 
+        className={`cell ${isToday ? 'today' : ''}`}
+        onClick={() => dayBirthdays.length > 0 && onBirthdayClick(dayBirthdays, d, currentMonth)}
+      >
+        <div className="dn">{d}</div>
+        {dayBirthdays.length > 0 && (
+          <div className="bdots">
+            {dayBirthdays.map((b, i) => (
+              <div key={i} className={`bdot ${getAvClass(i)}`}>{getInitials(b.name)}</div>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Trailing empty cells
+  const totalCells = firstDay + daysInMonth;
+  const rem = (7 - (totalCells % 7)) % 7;
+  for (let d = 1; d <= rem; d++) {
+    cells.push(
+      <div key={`next-${d}`} className="cell om">
+        <div className="dn">{d}</div>
+      </div>
+    );
+  }
 
   return (
-    <div className="calendar-container">
-      <div className="calendar-header">
-        <button className="nav-button" onClick={handlePrevMonth}>
-          <ChevronLeft className="icon" />
-        </button>
-        <h2 className="current-month-year">{months[currentMonth]} {currentYear}</h2>
-        <button className="nav-button" onClick={handleNextMonth}>
-          <ChevronRight className="icon" />
-        </button>
-      </div>
-
-      <div className="calendar-grid">
-        <div className="days-header">
-          {dayNames.map((d, i) => <div key={i} className="day-name">{d}</div>)}
+    <div className="cal-card">
+      <div className="cal-head">
+        <div className="cal-title">{months[currentMonth]} {currentYear}</div>
+        <div className="cal-nav">
+          <button className="cal-nb" onClick={() => cm(-1)}>‹</button>
+          <button className="cal-nb" onClick={() => cm(1)}>›</button>
         </div>
-
-        <div className="days-grid">
-          {/* Leading empty cells */}
-          {Array.from({ length: firstDay }).map((_, i) => (
-            <div key={`empty-start-${i}`} className="calendar-day empty" />
+      </div>
+      <div className="cal-body">
+        <div className="cal-dh">
+          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(d => (
+            <div key={d} className="cal-dl">{d}</div>
           ))}
-
-          {/* Day cells */}
-          {Array.from({ length: daysInMonth }).map((_, index) => {
-            const day = index + 1;
-            const dayBirthdays = getBirthdaysForDay(day);
-            const hasBirthday = dayBirthdays.length > 0;
-            const isHighlighted = day === highlightedDay;
-
-            return (
-              <div
-                key={`day-${day}`}
-                className={`calendar-day ${hasBirthday ? "has-birthday" : ""} ${isHighlighted ? "highlighted" : ""}`}
-              >
-                {/* Top row: day number + plus button */}
-                <div className="day-top-row">
-                  <span className="day-number">{day}</span>
-                  <button
-                    className="day-add-btn"
-                    onClick={(e) => handleAddClick(e, day)}
-                    title={`Add birthday on ${months[currentMonth]} ${day}`}
-                  >
-                    <Plus size={12} />
-                  </button>
-                </div>
-
-                {/* Birthday chips */}
-                {hasBirthday && (
-                  <div className="day-birthdays">
-                    {dayBirthdays.slice(0, 2).map((birthday, idx) => (
-                      <div
-                        key={idx}
-                        className="day-birthday-item"
-                        onClick={(e) => handleBirthdayChipClick(e, day)}
-                        title={`View ${birthday.name}'s details`}
-                      >
-                        <div className="avatar-mini">{birthday.name.charAt(0)}</div>
-                        <span className="name-preview">{birthday.name}</span>
-                      </div>
-                    ))}
-                    {dayBirthdays.length > 2 && (
-                      <div
-                        className="more-birthdays"
-                        onClick={(e) => handleBirthdayChipClick(e, day)}
-                      >
-                        +{dayBirthdays.length - 2} more
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-
-          {/* Trailing empty cells */}
-          {Array.from({ length: trailingEmpty }).map((_, i) => (
-            <div key={`empty-end-${i}`} className="calendar-day empty" />
-          ))}
+        </div>
+        <div className="cal-cells">
+          {cells}
         </div>
       </div>
     </div>

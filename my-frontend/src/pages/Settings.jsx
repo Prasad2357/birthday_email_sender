@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import '../css/Settings.css';
 import { Mail, Key, Save, CheckCircle, AlertCircle, Eye, EyeOff, Shield, Info } from 'lucide-react';
 
 const SETTINGS_STORAGE_KEY = 'reminday_settings';

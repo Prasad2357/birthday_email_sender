@@ -323,3 +323,41 @@ pip install python-multipart
 2026-04-13 17:14:11,119 - INFO - \U0001f5d3  Birthday reminder scheduler started.
 2026-04-13 17:35:53,582 - INFO - Scheduler shut down.
 2026-04-13 17:35:53,584 - INFO - Scheduler has been shut down
+2026-04-14 00:13:40,288 - INFO - Running missed reminders on startup...
+2026-04-14 00:13:43,653 - INFO - \u2705 Reminder email sent: \U0001f382 Birthday Today – 14 April 2026
+2026-04-14 00:13:43,673 - INFO - Weekly reminder already sent for 2026-W16 — skipping.
+2026-04-14 00:13:43,673 - INFO - Monthly reminder already sent for 2026-04 — skipping.
+2026-04-14 00:13:43,673 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-14 00:13:43,673 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-14 00:13:43,674 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-14 00:13:43,675 - INFO - Added job "send_daily_reminder" to job store "default"
+2026-04-14 00:13:43,677 - INFO - Added job "send_weekly_reminder" to job store "default"
+2026-04-14 00:13:43,677 - INFO - Added job "send_monthly_reminder" to job store "default"
+2026-04-14 00:13:43,677 - INFO - Scheduler started
+2026-04-14 00:13:43,677 - INFO - \U0001f5d3  Birthday reminder scheduler started.
+2026-04-14 00:20:52,607 - INFO - Scheduler shut down.
+2026-04-14 00:20:52,616 - INFO - Scheduler has been shut down
+2026-04-14 00:22:09,350 - INFO - Running missed reminders on startup...
+2026-04-14 00:22:09,353 - INFO - No birthdays today — skipping daily reminder.
+2026-04-14 00:22:09,361 - INFO - Weekly reminder already sent for 2026-W16 — skipping.
+2026-04-14 00:22:09,361 - INFO - Monthly reminder already sent for 2026-04 — skipping.
+2026-04-14 00:22:09,364 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-14 00:22:09,364 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-14 00:22:09,365 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-14 00:22:09,366 - INFO - Added job "send_daily_reminder" to job store "default"
+2026-04-14 00:22:09,367 - INFO - Added job "send_weekly_reminder" to job store "default"
+2026-04-14 00:22:09,367 - INFO - Added job "send_monthly_reminder" to job store "default"
+2026-04-14 00:22:09,367 - INFO - Scheduler started
+2026-04-14 00:22:09,367 - INFO - \U0001f5d3  Birthday reminder scheduler started.
+2026-04-14 23:12:52,340 - INFO - Running missed reminders on startup...
+2026-04-14 23:12:52,346 - INFO - No birthdays today — skipping daily reminder.
+2026-04-14 23:12:52,349 - INFO - Weekly reminder already sent for 2026-W16 — skipping.
+2026-04-14 23:12:52,350 - INFO - Monthly reminder already sent for 2026-04 — skipping.
+2026-04-14 23:12:52,350 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-14 23:12:52,352 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-14 23:12:52,352 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-14 23:12:52,353 - INFO - Added job "send_daily_reminder" to job store "default"
+2026-04-14 23:12:52,354 - INFO - Added job "send_weekly_reminder" to job store "default"
+2026-04-14 23:12:52,354 - INFO - Added job "send_monthly_reminder" to job store "default"
+2026-04-14 23:12:52,354 - INFO - Scheduler started
+2026-04-14 23:12:52,354 - INFO - \U0001f5d3  Birthday reminder scheduler started.

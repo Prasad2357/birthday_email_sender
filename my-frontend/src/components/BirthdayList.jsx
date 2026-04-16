@@ -1,86 +1,14 @@
-// import { useEffect, useState } from "react"
-// import "../css/BirthdayList.css"
-// import MonthGrid from "./MonthGrid"
-// import MonthModal from "./MonthModal";
-
-// function BirthdayList() {
-//   const [birthdays, setBirthdays] = useState([])
-//   const [selectedMonth, setSelectedMonth] = useState(null)
-
-//   useEffect(() => {
-//     fetch("http://localhost:8000/birthdays")
-//       .then(res => res.json())
-//       .then(data => setBirthdays(data))
-//   }, [])
-
-//   const handleMonthClick = (month) => {
-//     setSelectedMonth(month)
-//   }
-
-//   const closeModal = () => {
-//     setSelectedMonth(null)
-//   }
-
-//   return (
-//     <div className="birthday-list">
-//       <h3> Browse by Month</h3>
-//       <MonthGrid onMonthClick={handleMonthClick} />
-
-//       {selectedMonth &&(
-//         <MonthModal
-//           month={selectedMonth}
-//           onClose={closeModal}
-//           />
-//       )}
-//     </div>
-//   )
-// }
-
-// export default BirthdayList
-
-
-import { useState, useEffect, useCallback } from "react";
-import "../css/BirthdayList.css";
+import { useState } from "react";
 import MonthGrid from "./MonthGrid";
 import MonthModal from "./MonthModal";
 import CalendarView from "./CalendarView";
-import AddBirthdayModal from "./AddBirthdayModal";
-import { Calendar, Gift } from "lucide-react";
 
-function BirthdayList({ showCalendarView: initialView = false }) {
-  const [birthdays, setBirthdays] = useState([]);
+function BirthdayList({ birthdays, setBirthdays, showCalendarView: initialView = true, isAddModalOpen, setIsAddModalOpen, setSelectedDate, onAddSuccess }) {
   const [selectedMonth, setSelectedMonth] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
   const [showCalendarView, setShowCalendarView] = useState(initialView);
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
-  // ISO date string for the "Add Birthday" modal, e.g. "2026-04-11"
-  const [addBirthdayDate, setAddBirthdayDate] = useState(null);
-
-  const fetchBirthdays = useCallback(() => {
-    fetch("http://localhost:8000/birthdays/")
-      .then((res) => res.json())
-      .then((data) => setBirthdays(data))
-      .catch((err) => {
-        console.error("Failed to fetch birthdays:", err);
-        setBirthdays(sampleBirthdayData);
-      });
-  }, []);
-
-  useEffect(() => {
-    setShowCalendarView(initialView);
-    fetchBirthdays();
-  }, [initialView, fetchBirthdays]);
-
-  // Sample data for fallback
-  const sampleBirthdayData = [
-    { bday_id: 1, name: "Prasad", date: "2003-05-02", relationship: "Friend", notes: "Loves video games" },
-    { bday_id: 2, name: "Aisha", date: "1995-05-15", relationship: "Colleague", notes: "Prefers gift cards" },
-    { bday_id: 3, name: "Miguel", date: "1988-01-27", relationship: "Brother", notes: "Collects records" },
-    { bday_id: 4, name: "Sophia", date: "2000-02-24", relationship: "Cousin", notes: "Into photography" },
-    { bday_id: 5, name: "Emma", date: "1993-04-05", relationship: "Sister", notes: "Chocolate lover" },
-    { bday_id: 6, name: "Carlos", date: "1978-06-30", relationship: "Uncle", notes: "Enjoys fishing" }
-  ];
 
   const months = [
     "January", "February", "March", "April", "May", "June",
@@ -98,16 +26,14 @@ function BirthdayList({ showCalendarView: initialView = false }) {
       monthName: months[monthIndex],
       birthdays: monthBirthdays
     });
-
     setSelectedDay(null);
   };
 
-  // + button on a calendar day → open Add Birthday modal
   const handleAddClick = (isoDate) => {
-    setAddBirthdayDate(isoDate);
+    setSelectedDate(isoDate);
+    setIsAddModalOpen(true);
   };
 
-  // Clicking a birthday name chip → show day-detail modal
   const handleBirthdayClick = (dayBirthdays, day, monthIndex) => {
     setSelectedDay({
       day,
@@ -121,67 +47,131 @@ function BirthdayList({ showCalendarView: initialView = false }) {
     setSelectedDay(null);
   };
 
-  const toggleView = () => {
-    setShowCalendarView(prev => !prev);
+  const totalBirthdays = birthdays.length;
+  const currentMonthBirthdaysCount = birthdays.filter(b => new Date(b.date).getMonth() === new Date().getMonth()).length;
+  
+  const getDaysToNext = () => {
+    if (birthdays.length === 0) return 0;
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const sorted = birthdays.map(b => {
+      const bdate = new Date(b.date);
+      const bdayThisYear = new Date(today.getFullYear(), bdate.getMonth(), bdate.getDate());
+      if (bdayThisYear < today) bdayThisYear.setFullYear(today.getFullYear() + 1);
+      return bdayThisYear - today;
+    }).sort((a, b) => a - b);
+    return Math.ceil(sorted[0] / (1000 * 60 * 60 * 24));
   };
 
-  // Get count of birthdays this month for the header
-  const currentMonthBirthdays = birthdays.filter(birthday => {
-    const birthdayMonth = new Date(birthday.date).getMonth();
-    return birthdayMonth === new Date().getMonth();
-  }).length;
-
-  // Get count of birthdays per month for displaying in grid view
-  const getBirthdayCountForMonth = (monthIndex) => {
-    return birthdays.filter(birthday => {
-      const birthdayMonth = new Date(birthday.date).getMonth();
-      return birthdayMonth === monthIndex;
-    }).length;
+  const getBirthdaysThisQuarter = () => {
+    const currentQuarter = Math.floor(new Date().getMonth() / 3);
+    return birthdays.filter(b => Math.floor(new Date(b.date).getMonth() / 3) === currentQuarter).length;
   };
+
+  const getUpcomingBirthdays = () => {
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    return birthdays.map(b => {
+      const bdate = new Date(b.date);
+      let bdayThisYear = new Date(today.getFullYear(), bdate.getMonth(), bdate.getDate());
+      if (bdayThisYear < today) bdayThisYear.setFullYear(today.getFullYear() + 1);
+      const daysAway = Math.ceil((bdayThisYear - today) / (1000 * 60 * 60 * 24));
+      return { ...b, daysAway, turning: bdayThisYear.getFullYear() - bdate.getFullYear() };
+    }).sort((a,b) => a.daysAway - b.daysAway).slice(0, 4);
+  };
+
+  const upcoming = getUpcomingBirthdays();
+  const next = upcoming[0];
+
+  const getAvClass = (index) => `av${(index % 8) + 1}`;
+  const getInitials = (name) => name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
 
   return (
-    <div className="birthday-list">
-      <div className="birthday-list-header">
-        <h1>Birthday Calendar</h1>
-        <div className="birthday-list-actions">
-          <div className="birthday-count">
-            <Gift className="icon" />
-            <span>{currentMonthBirthdays} birthdays</span>
+    <>
+      <div className="topbar">
+        <div className="tb-left">
+          <h1>Birthday Calendar <span style={{ fontSize: '18px' }}>🎈</span></h1>
+          <p>{months[currentMonth]} {currentYear} · {currentMonthBirthdaysCount} birthdays this month</p>
+        </div>
+        <div className="tb-right">
+          <div className="vtoggle">
+            <button className={`vt ${showCalendarView ? 'on' : ''}`} onClick={() => setShowCalendarView(true)}>Calendar</button>
+            <button className={`vt ${!showCalendarView ? 'on' : ''}`} onClick={() => setShowCalendarView(false)}>Grid</button>
           </div>
-          <button className="view-toggle-btn" onClick={toggleView}>
-            <Calendar className="icon" />
-            {showCalendarView ? "Grid View" : "Calendar View"}
-          </button>
+          <div className="chip chip-ghost"><span>🎂</span> <span>{totalBirthdays} birthdays</span></div>
+          <div className="chip chip-add" onClick={() => { setSelectedDate(null); setIsAddModalOpen(true); }}><span>＋</span> Add</div>
         </div>
       </div>
 
-      {showCalendarView ? (
-        <CalendarView
-          birthdays={birthdays}
-          currentMonth={currentMonth}
-          currentYear={currentYear}
-          setCurrentMonth={setCurrentMonth}
-          setCurrentYear={setCurrentYear}
-          onAddClick={handleAddClick}
-          onBirthdayClick={handleBirthdayClick}
-          months={months}
-        />
-      ) : (
-        <>
+      <div className="content">
+        <div className="stats">
+          <div className="scard"><div className="scard-em">🎂</div><div className="scard-n">{totalBirthdays}</div><div className="scard-l">Total birthdays</div></div>
+          <div className="scard"><div className="scard-em">⚡</div><div className="scard-n">{getDaysToNext()}</div><div className="scard-l">Days to next</div></div>
+          <div className="scard"><div className="scard-em">📅</div><div className="scard-n">{currentMonthBirthdaysCount}</div><div className="scard-l">This month</div></div>
+          <div className="scard"><div className="scard-em">🌟</div><div className="scard-n">{getBirthdaysThisQuarter()}</div><div className="scard-l">This quarter</div></div>
+        </div>
+
+        {showCalendarView ? (
+          <div className="mg">
+            <CalendarView
+              birthdays={birthdays}
+              currentMonth={currentMonth}
+              currentYear={currentYear}
+              setCurrentMonth={setCurrentMonth}
+              setCurrentYear={setCurrentYear}
+              onAddClick={handleAddClick}
+              onBirthdayClick={handleBirthdayClick}
+              months={months}
+            />
+            <div className="rp">
+              {next && (
+                <div className="hero-card">
+                  <div className="hc-tag">🎉 Up next</div>
+                  <div className="hc-name">{next.name}</div>
+                  <div className="hc-sub">{new Date(next.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} · turning {next.turning}</div>
+                  <div className="hc-count">
+                    <div className="hc-box"><div className="hc-num">{next.daysAway}</div><div className="hc-unit">days</div></div>
+                    <div className="hc-box"><div className="hc-num">0</div><div className="hc-unit">hours</div></div>
+                    <div className="hc-box"><div className="hc-num">00</div><div className="hc-unit">mins</div></div>
+                  </div>
+                </div>
+              )}
+
+              <div>
+                <div className="sec-head">
+                  <div className="sec-title">Upcoming Birthdays</div>
+                  <div className="sec-more">See all →</div>
+                </div>
+                <div className="blist">
+                  {upcoming.map((b, i) => (
+                    <div key={b.bday_id} className="brow" onClick={() => handleBirthdayClick([b], new Date(b.date).getDate(), new Date(b.date).getMonth())}>
+                      <div className={`bav ${getAvClass(i)}`}>{getInitials(b.name)}</div>
+                      <div className="bi">
+                        <div className="bn">{b.name}</div>
+                        <div className="bd">{new Date(b.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} · turning {b.turning}</div>
+                      </div>
+                      <div className={`badge ${b.daysAway < 7 ? 'bs' : b.daysAway < 30 ? 'bw' : 'bm'}`}>{b.daysAway}d</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
           <MonthGrid
             onMonthClick={handleMonthClick}
             months={months}
-            getBirthdayCount={getBirthdayCountForMonth}
+            getBirthdayCount={(m) => birthdays.filter(b => new Date(b.date).getMonth() === m).length}
           />
-        </>
-      )}
+        )}
+      </div>
 
       {selectedMonth && !selectedDay && (
         <MonthModal
           month={selectedMonth.monthName}
           birthdays={selectedMonth.birthdays}
           onClose={closeModal}
-          onBirthdayDeleted={fetchBirthdays}
+          onBirthdayDeleted={onAddSuccess}
         />
       )}
 
@@ -191,18 +181,10 @@ function BirthdayList({ showCalendarView: initialView = false }) {
           birthdays={selectedDay.birthdays}
           onClose={closeModal}
           isDay={true}
-          onBirthdayDeleted={fetchBirthdays}
+          onBirthdayDeleted={onAddSuccess}
         />
       )}
-
-      {addBirthdayDate && (
-        <AddBirthdayModal
-          selectedDate={addBirthdayDate}
-          onClose={() => setAddBirthdayDate(null)}
-          onAddSuccess={fetchBirthdays}
-        />
-      )}
-    </div>
+    </>
   );
 }
 
